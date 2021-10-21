@@ -1,8 +1,8 @@
-const { resolve, reject } = require('core-js/fn/promise');
+// const { resolve, reject } = require('core-js/fn/promise');
 const mysql = require('mysql');
 const conn = mysql.createConnection({
     host: 'localhost',
-    user: '',
+    user: 'root',
     password: 'S3cur3@2021'
 });
 
