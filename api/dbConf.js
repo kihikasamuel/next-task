@@ -1,13 +1,17 @@
-var mysql = require('mysql');
-var Dsn = mysql.createConnection({
+const mysql = require('mysql');
+var conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'S3cur3@2021',
-    database: 'trial'
+    database: 'todos_db'
 });
 
-var conn = Dsn.connect(function(err){
-    if(err) throw err.sqlMessage
+conn.connect(function(err){
+    if(err) {
+        throw err.sqlMessage;
+        return;
+    }
+    
     console.log('Connection successful...');
 });
 

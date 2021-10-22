@@ -3,7 +3,7 @@ const config = require('../config');
 const jwt = require('jsonwebtoken');
 const validator = require('express-validator');
 const bcrypt = require('bcryptjs');
-// const { resolve } = require('core-js/fn/promise');
+const { resolve } = require('core-js/fn/promise');
 
 // Register a user
 module.exports.register = [
@@ -13,25 +13,28 @@ module.exports.register = [
     // check if email exists.
     validator.body('username').custom(value => {
         return new Promise((resolve, reject) => {
-            conn.query('SELECT * FROM users_tbl WHERE email = ?', [value], (err, results) =>{
+            conn.query('SELECT * FROM users_tbl WHERE username = ?', [value], (err, results) => {
                 if(err) {
                     reject(new Error('Server Error'));
                 }
                 if(results.length > 0) {
+                    console.log(`This username is already taken!':: ${results}`);
+                    // check why it's not getting results value
                     reject(new Error('This username is already taken!'));
                 }
                 resolve(true);
-            });
+            })
         });
     }),
     
     validator.body('password', 'Password too short or does not met the criteria').isLength({min: 6}),
 
     function(req, res) {
+
         // after checking validations errors, throw them if any
         const errors = validator.validationResult(req);
         if(!errors.isEmpty) {
-            return res.status(422);
+            return res.status(422).json({message: errors.message});
         }
 
         // initialize data to be sent
@@ -49,9 +52,9 @@ module.exports.register = [
         //save records to db
         conn.query('INSERT INTO users_tbl SET ?', user, (err, results, fields) => {
             if(err) {
-                return res.status(500).json({message: 'Unable to save record!', err: err})
+                return res.status(422).json({message: 'Unable to save record!', err: err})
             }
             return res.status(200).json({message: 'Registered successfully! Proceed to login'})
-        })
+        });
     }
 ];
