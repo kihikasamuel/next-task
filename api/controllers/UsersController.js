@@ -3,7 +3,7 @@ const config = require('../config');
 const jwt = require('jsonwebtoken');
 const validator = require('express-validator');
 const bcrypt = require('bcryptjs');
-const { resolve } = require('core-js/fn/promise');
+// const { resolve } = require('core-js/fn/promise');
 
 // Register a user
 module.exports.register = [
@@ -15,26 +15,24 @@ module.exports.register = [
         return new Promise((resolve, reject) => {
             conn.query('SELECT * FROM users_tbl WHERE username = ?', [value], (err, results) => {
                 if(err) {
-                    reject(new Error('Server Error'));
+                    reject(new Error('An Unknown error occured!'));
                 }
                 if(results.length > 0) {
-                    console.log(`This username is already taken!':: ${results}`);
-                    // check why it's not getting results value
-                    reject(new Error('This username is already taken!'));
+                    reject(new Error('This username is already taken!'))
                 }
                 resolve(true);
             })
-        });
+        })
     }),
     
-    validator.body('password', 'Password too short or does not met the criteria').isLength({min: 6}),
+    validator.body('password', 'Password must 6 character or longer').isLength({min: 6}).isStrongPassword(),
 
     function(req, res) {
 
         // after checking validations errors, throw them if any
         const errors = validator.validationResult(req);
-        if(!errors.isEmpty) {
-            return res.status(422).json({message: errors.message});
+        if(!errors.isEmpty()) {
+            return res.status(422).json({message:"This username is alrady taken!"});
         }
 
         // initialize data to be sent
@@ -52,9 +50,53 @@ module.exports.register = [
         //save records to db
         conn.query('INSERT INTO users_tbl SET ?', user, (err, results, fields) => {
             if(err) {
-                return res.status(422).json({message: 'Unable to save record!', err: err})
+                return res.status(422).json({message: 'Unable to register user!'});
             }
             return res.status(200).json({message: 'Registered successfully! Proceed to login'})
         });
     }
 ];
+
+// login
+module.exports.login = [
+    validator.body('username', 'Please enter a valid email!').isEmail(),
+    validator.body('password', 'Password must 6 character or longer').
+        isLength({min:6}).isStrongPassword(),
+
+    function(req, res) {
+        const errors = validator.validationResult(req);
+        if(!errors.isEmpty()) {
+            return res.status(422).json({message:errors.mapped()});
+        }
+
+        // check if email and password matches
+        conn.query('SELECT * FROM users_tbl WHERE username=?', req.body.username, (err, results, fields) =>{
+            if(err){
+                return res.status(500).json({message:err.mapped()});
+            }
+
+            if(results.length > 0) {
+                const user = results[0];
+
+                return bcrypt.compare(req.body.password, user.password, (err, isMatched) => {
+                    if(isMatched===true){
+                        return res.json({
+                            user: {
+                                id: user.id,
+                                username: user.username,
+                                fullname: user.fullname
+                            },
+                            token: jwt.sign({id:user.id, username:user.username, fullname:user.fullname}, config.authSecret)
+                        })
+                    }
+                    else{
+                        return res.status(500).json({message:"Invalid username or password!"})
+                    }
+                })
+            }
+            else{
+                return res.status(500).json({message:"Invalid username or password!"})
+            }
+        });
+    }
+]

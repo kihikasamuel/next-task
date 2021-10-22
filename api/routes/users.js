@@ -10,5 +10,8 @@ const userController = require('../controllers/UsersController');
 // user register endpoint
 router.post('/users/register', userController.register);
 
+// login endpoint
+router.post('/users/login', userController.login);
+
 
 module.exports = router;
