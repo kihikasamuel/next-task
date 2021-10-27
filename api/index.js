@@ -8,9 +8,11 @@ app.use(express.urlencoded({extended: true}));
 
 // require api routes
 const users = require('./routes/users');
+const tasks = require('./routes/tasks');
 
 // use routes
 app.use(users);
+app.use(tasks);
 
 module.exports = {
     path: '/api',

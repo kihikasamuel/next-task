@@ -1,14 +1,17 @@
 const mysql = require('mysql');
 var conn = mysql.createConnection({
     host: 'localhost',
+    port: 8001,
     user: 'root',
-    password: 'S3cur3@2021',
+    password: 'appuser@123',
     database: 'todos_db'
 });
 
+//Icu@2021//172.17.0.2//docker root Icu@2021
+
 conn.connect(function(err){
     if(err) {
-        throw err.sqlMessage;
+        throw err;
         return;
     }
     
