@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 var conn = mysql.createConnection({
-    host: 'localhost',
+    host: 'localhost',//docker-mysql
     port: 8001,
     user: 'root',
     password: 'appuser@123',

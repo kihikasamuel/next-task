@@ -3,7 +3,7 @@ const { existsSync } = require('fs');
 const mysql = require('mysql');
 const { exit } = require('process');
 const conn = mysql.createConnection({
-    host: 'localhost',
+    host: 'localhost',//docker-mysql
     port: 8001,
     user: 'root',
     password: 'appuser@123',
@@ -39,9 +39,9 @@ function craeteTables() {
 
     // wait for all promises to resolve
     Promise.all([
+        // any other table shld be added here
         createUsersTable(),
         createTasksTable(),
-        // any other table shld be added here
     ]).then(() => {
         conn.end();
         console.log("Connection clossed");
