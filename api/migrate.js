@@ -1,24 +1,21 @@
-// const { resolve, reject } = require('core-js/fn/promise');
-const { existsSync } = require('fs');
 const mysql = require('mysql');
-const { exit } = require('process');
 const conn = mysql.createConnection({
-    host: 'localhost',//docker-mysql
+    host: 'localhost',
     port: 8001,
     user: 'root',
     password: 'appuser@123',
     database: 'todos_db'
-});
+});//container name - docker-mysql
 
 //create connection
 conn.connect(err => {
     if(err) console.error(`Unable to connect: ${err.message}`)
-    console.log("Connection successful!")
+    console.log("Connection successful!");
 });
 
 
 //create database
-const db_name = "todos_db";
+const db_name = "sample_db";
 conn.query(`CREATE DATABASE IF NOT EXISTS ${db_name}`, (err, result) => {
     if(err) console.error(`${err.stack}`)
     console.log(`Database ${db_name} created...`);
@@ -54,14 +51,14 @@ function createUsersTable() {
     let table_name = 'users_tbl';
     let stmt = `CREATE TABLE IF NOT EXISTS ${table_name}(
         id INT AUTO_INCREMENT NOT NULL,
-        username VARCHAR(255) NOT NULL,
+        company_uid VARCHAR(255) NOT NULL UNIQUE KEY,
+        username VARCHAR(255) NOT NULL UNIQUE KEY,
         fullname VARCHAR(255) NOT NULL,
         password VARCHAR(255) NOT NULL,
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-        PRIMARY KEY (id),
-        UNIQUE KEY (username)
+        PRIMARY KEY (id)
     )`;
 
     // call the query executer
@@ -73,6 +70,7 @@ function createTasksTable() {
     let table_name = 'tasks_tbl';
     let stmt = `CREATE TABLE IF NOT EXISTS ${table_name} (
         id INT AUTO_INCREMENT NOT NULL,
+        company_id VARCHAR(255) NOT NULL,
         label VARCHAR(255) NOT NULL,
         title VARCHAR(255) NOT NULL,
         notes TEXT NOT NULL,
@@ -85,7 +83,8 @@ function createTasksTable() {
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
         PRIMARY KEY (id),
-        UNIQUE KEY (title)
+        UNIQUE KEY (title),
+        CONSTRAINT FOREIGN KEY(company_id) REFERENCES users_tbl(company_uid)
     )`;
 
     // execute the query

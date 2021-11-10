@@ -3,11 +3,12 @@ const config = require('../config');
 const jwt = require('jsonwebtoken');
 const validator = require('express-validator');
 const bcrypt = require('bcryptjs');
+const { json } = require('express');
 // const { resolve } = require('core-js/fn/promise');
 
 // Register a user
 module.exports.register = [
-    validator.body('username', 'Please enter a valid email!').isEmail().normalizeEmail(),
+    validator.body('username', 'Please enter a valid email!').isEmail(),
     validator.body('full_name', 'Please enter your full name').isLength({min: 2}),
 
     // check if email exists.
@@ -25,14 +26,16 @@ module.exports.register = [
         })
     }),
     
-    validator.body('password', 'Password must 6 character or longer').isLength({min: 6}).isStrongPassword(),
+    validator.body('password', 
+    'Password must 6 character or longer and must contain atleast an uppercase letters, numbers and special characters')
+    .isLength({min: 6}).isStrongPassword(),
 
     function(req, res) {
 
         // after checking validations errors, throw them if any
         const errors = validator.validationResult(req);
         if(!errors.isEmpty()) {
-            return res.status(422).json({message:"This username is alrady taken!"});
+            return res.status(422).json({message:"An error occured!", error: errors});
         }
 
         // initialize data to be sent
@@ -40,6 +43,10 @@ module.exports.register = [
         user.username = req.body.username;
         user.fullname = req.body.full_name;
         user.password = req.body.password;
+
+        // generate a unique alphanum ID
+        let uid = Math.random().toString(36).slice(2);
+        user.company_uid = uid;
 
         // encrypt password
         const salt = bcrypt.genSaltSync(10);
@@ -60,8 +67,7 @@ module.exports.register = [
 // login
 module.exports.login = [
     validator.body('username', 'Please enter a valid email!').isEmail(),
-    validator.body('password', 'Password must 6 character or longer').
-        isLength({min:6}).isStrongPassword(),
+    validator.body('password', 'Wrong password').isLength({min:6}).isStrongPassword(),
 
     function(req, res) {
         const errors = validator.validationResult(req);
