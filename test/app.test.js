@@ -1,11 +1,23 @@
 const app = require('../api/index');
-app.listen(5000, () => {
-    console.log("Server started on port 5000");
-})
+const request = require('supertest');
 
-const conn = require('../api/dbConf');
-const supertest = require('supertest');
+describe("GET /api/tasks/all", () => {
+    test("It should respond with status code 200", async () => {
+        const response = await request(app).get('/tasks/all');
+        expect(response.statusCode).toBe(200);
+    });
 
-beforeEach((done) => {
-    conn.query()
-})
+    test("It should return status code 200", async () => {
+        const response = await request(app).get('/tasks/:1');
+        
+        expect(response.statusCode).toBe(200);
+    });
+});
+
+describe("Get /api/tasks/:id", () => {
+    test("It should return status code 200", async () => {
+        const response = await request(app).get('/tasks/:1');
+        
+        expect(response.statusCode).toBe(200);
+    });
+});

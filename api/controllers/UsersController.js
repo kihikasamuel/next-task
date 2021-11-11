@@ -45,8 +45,8 @@ module.exports.register = [
         user.password = req.body.password;
 
         // generate a unique alphanum ID
-        let uid = Math.random().toString(36).slice(2);
-        user.company_uid = uid;
+        let u_id = Math.random().toString(36).slice(2);
+        user.company_uid = u_id;
 
         // encrypt password
         const salt = bcrypt.genSaltSync(10);
@@ -90,9 +90,10 @@ module.exports.login = [
                             user: {
                                 id: user.id,
                                 username: user.username,
-                                fullname: user.fullname
+                                fullname: user.fullname,
+                                uid: user.company_uid
                             },
-                            token: jwt.sign({id:user.id, username:user.username, fullname:user.fullname}, config.authSecret)
+                            token: jwt.sign({id:user.id, username:user.username, fullname:user.fullname, uid:user.uid}, config.authSecret)
                         })
                     }
                     else{

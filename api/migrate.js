@@ -4,8 +4,7 @@ const conn = mysql.createConnection({
     port: 8001,
     user: 'root',
     password: 'appuser@123',
-    database: 'todos_db'
-});//container name - docker-mysql
+});
 
 //create connection
 conn.connect(err => {
@@ -15,7 +14,7 @@ conn.connect(err => {
 
 
 //create database
-const db_name = "sample_db";
+const db_name = "todos_db";
 conn.query(`CREATE DATABASE IF NOT EXISTS ${db_name}`, (err, result) => {
     if(err) console.error(`${err.stack}`)
     console.log(`Database ${db_name} created...`);

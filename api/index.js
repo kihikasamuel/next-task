@@ -14,8 +14,4 @@ const tasks = require('./routes/tasks');
 app.use(users);
 app.use(tasks);
 
-// module.exports = app;
-module.exports = {
-    path: '/api',
-    handler: app
-}
+module.exports = app;

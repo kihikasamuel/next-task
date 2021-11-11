@@ -38,6 +38,7 @@ module.exports.addTask = [
         task.is_reminder = req.body.isreminder;
         task.status = req.body.status;
         task.assign_to = req.body.assignto;
+        task.company_id = req.body.company_id;
 
         // save record
         conn.query('INSERT INTO tasks_tbl SET ?', task, (err, results, fields) => {

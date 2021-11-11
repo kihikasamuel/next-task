@@ -43,7 +43,7 @@ export default {
 
   //allow additional routes inside the api
   serverMiddleware: [
-    '~/api/index.js'
+    '~/api/main.js'
   ]
 
 }
