@@ -1,7 +1,12 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const db = require('./dbConf');
+
+dotenv.config();
+
 // express instance
 const app = express();
+
 // init inbuilt bodyparser
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

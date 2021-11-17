@@ -1,20 +1,20 @@
 const mysql = require('mysql');
+require('dotenv').config();
 var conn = mysql.createConnection({
-    host: 'localhost',//docker-mysql
-    port: 8001,
-    user: 'root',
-    password: 'appuser@123',
-    database: 'todos_db'
+    host: process.env.DB_HOST,//docker-mysql
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_USER_SECRET,
+    database: process.env.NODE_ENV === "test" ? "todos_test_db" : 'todos_test_db'
 });
 
-//Icu@2021//172.17.0.2//docker root Icu@2021
 
-conn.connect(function(err){
+
+conn.connect((err)=>{
     if(err) {
         throw err;
         return;
     }
-    
     // console.log('Connection successful...');
 });
 

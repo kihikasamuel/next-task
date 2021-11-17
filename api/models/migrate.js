@@ -1,9 +1,13 @@
 const mysql = require('mysql');
+const app = require('../server.js');
+
+require('dotenv').config();
+
 const conn = mysql.createConnection({
-    host: 'localhost',
-    port: 8001,
-    user: 'root',
-    password: 'appuser@123',
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_USER_SECRET,
 });
 
 //create connection
@@ -14,7 +18,7 @@ conn.connect(err => {
 
 
 //create database
-const db_name = "todos_db";
+const db_name = process.env.NODE_ENV === "test" ? 'todos_test_db' : 'todos_db';
 conn.query(`CREATE DATABASE IF NOT EXISTS ${db_name}`, (err, result) => {
     if(err) console.error(`${err.stack}`)
     console.log(`Database ${db_name} created...`);
