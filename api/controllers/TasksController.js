@@ -50,7 +50,7 @@ module.exports.addTask = [
     }
 ];
 
-// list tasks
+// list all tasks
 module.exports.list = function(req, res) {
     conn.query('SELECT * FROM tasks_tbl', (error, results, fields) => {
         if(error) {
@@ -71,7 +71,7 @@ module.exports.getTaskById = function(req, res) {
     var id = req.params.id;
     conn.query('SELECT * FROM tasks_tbl WHERE id=?', id, (error, results, fields)=>{
         if(error) {
-            return res.status(500).json({message: error})
+            return res.status(500).json({message: 'No record with that id'})
         }
 
         if(results.length > 0) {
@@ -107,8 +107,9 @@ module.exports.removeTask = function(req, res) {
 
 // update task
 module.exports.updateTasks = [
-    validator.body('label', 'Choose a label for your task'),
-    validator.body('title', 'Name your task').isLength({min:3}),
+    validator.body('label', 'Change task label'),
+    validator.body('title', 'Rename your task').isLength({min:3}),
+
     // check if the new title has already been used
     validator.body('title').custom((value, {req})=>{
         return new Promise((resolve, reject)=>{
@@ -126,8 +127,8 @@ module.exports.updateTasks = [
         });
     }),
 
-    validator.body('notes', 'Add some  notes about your task'),
-    validator.body('repeats', 'Remind me every...').isNumeric(),
+    validator.body('notes', 'Edit notes about your task'),
+    validator.body('repeats', 'Edit Reminder...').isNumeric(),
     validator.body('isreminder', 'Send you a reminder?').isLength({min:2}),
 
     function(req, res) {
@@ -137,7 +138,8 @@ module.exports.updateTasks = [
         }
 
         var id = req.params.id;
-        // update iff record exists
+
+        // check iff record exists
         conn.query('SELECT * FROM tasks_tbl WHERE id = ?', id, (error, results, fields)=>{
             if(error) {
                 return res.status(500).json({message:"Server Error: "+error});
@@ -147,6 +149,7 @@ module.exports.updateTasks = [
                 const task = results[0];
 
                 // set new values or persist existing ones
+                task.label = req.body.label ? req.body.label : task.label;
                 task.title = req.body.title ? req.body.title : task.title;
                 task.notes = req.body.notes ? req.body.notes : task.notes;
                 task.scheduled_on = req.body.scheduledon ? req.body.scheduledon : task.scheduledon;

@@ -13,10 +13,10 @@ router.get('/tasks/all', tasksController.list);
 // get a single task
 router.get('/tasks/:id', tasksController.getTaskById);
 
-// delete a task by id
-router.delete('/tasks/:id', tasksController.removeTask);
-
 // update a task
 router.put('/tasks/:id', tasksController.updateTasks);
+
+// delete a task by id
+router.delete('/tasks/:id', tasksController.removeTask);
 
 module.exports = router;
