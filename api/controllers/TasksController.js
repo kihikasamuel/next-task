@@ -41,7 +41,7 @@ module.exports.addTask = [
         task.company_id = req.body.company_id;
 
         // save record
-        conn.query('INSERT INTO tasks_tbl SET ?', task, (err, results, fields) => {
+        conn.query('INSERT INTO tasks_tbl SET ?', [task], (err, results, fields) => {
             if(err) {
                 return res.status(422).json({message: err});
             }
@@ -71,7 +71,7 @@ module.exports.getTaskById = function(req, res) {
     var id = req.params.id;
     conn.query('SELECT * FROM tasks_tbl WHERE id=?', id, (error, results, fields)=>{
         if(error) {
-            return res.status(500).json({message: 'No record with that id'})
+            return res.status(500).json({message: 'No record with that id!'})
         }
 
         if(results.length > 0) {

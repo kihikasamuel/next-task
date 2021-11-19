@@ -5,7 +5,7 @@ var conn = mysql.createConnection({
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_USER_SECRET,
-    database: process.env.NODE_ENV === "test" ? "todos_test_db" : 'todos_test_db'
+    database: process.env.NODE_ENV === "test" ? "todos_test_db" : 'todos_db'
 });
 
 
