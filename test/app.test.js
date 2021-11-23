@@ -30,14 +30,14 @@ const tasks = [
 
 
 /* BEGIN setting up and tearing down */
-beforeEach(async () => {//before each test
+beforeAll(async () => {//before each test
     for(let task of tasks){
         await conn.query('INSERT INTO tasks_tbl SET ?', task);
     }
 });
 
 // after each test
-afterEach(async () => {
+afterAll(async () => {
     await conn.query('DELETE FROM tasks_tbl');
 });
 /* END setting up and tearing down */
@@ -81,7 +81,7 @@ describe("Get /api/tasks/:id", () => {
 
 // test add 1 task
 describe('POST /api/tasks/add', () => {
-    test('Should add a single task and return code 200', async() => {
+    test('Should add a single task and return code 201', async() => {
         
         const newTask = await request(app)
         .post('/tasks/add')
@@ -99,7 +99,7 @@ describe('POST /api/tasks/add', () => {
 
         // make sure it was adde correctly
         expect(newTask.body).toEqual({"message": "Task saved successfully!"})
-        expect(newTask.statusCode).toBe(200);
+        expect(newTask.statusCode).toBe(201);
 
         // you cann check if record lenght grew by 1
         const response = await request(app).get('/tasks/all');
@@ -110,7 +110,7 @@ describe('POST /api/tasks/add', () => {
 
 // test update task
 describe('UPDATE /api/tasks/:id', () => {
-    test('Should update the task and return a status code 200', async() => {
+    test('Should update the task and return a status code 201', async() => {
         // grab one id from added tasks
         const listedTasks = await request(app).get('/tasks/all');
         let id = listedTasks.body[0].id;
@@ -129,7 +129,7 @@ describe('UPDATE /api/tasks/:id', () => {
         })
 
         // check if updated with success
-        expect(updatedTask.statusCode).toBe(200);
+        expect(updatedTask.statusCode).toBe(201);
         expect(updatedTask.body).toEqual({"message": "Task updated successfully"});
 
         // check if task with this id was updated
@@ -144,24 +144,14 @@ describe('UPDATE /api/tasks/:id', () => {
 
 // test delete tasks
 describe('DELETE /api/tasks/:id', () => {
-    test('Delete atleast one task', async() => {
-        // grab one id from added tasks
-        const listedTasks = await request(app).get('/tasks/all');
-        let id = listedTasks.body[0].id;
+    test('Delete resource at', async () => {
+        const existingTasks = await request(app).get('/tasks/all');
+        let id = existingTasks.body[0].id;
 
-        const tasktoDelete = await request(app).delete(`/tasks/${id}`);
+        const deletedTask = await request(app).delete(`/tasks/${id}`).send();
 
-        // check if successfully done
-        expect(tasktoDelete.statusCode).toBe(200);
-
-        // check to see no record with id
-        const response = await request(app).get(`/tasks/`)
-        .send({
-            id:id
-        });
-        expect(response.body).toEqual(expect.arrayContaining([
-            expect.objectContaining({"message":"No record with that id!"})
-        ]));
-
+        // check if successfully deleted
+        expect(deletedTask.body).toEqual({"message": "Task deleted!"});
+        expect(deletedTask.statusCode).toBe(200);
     });
 });
