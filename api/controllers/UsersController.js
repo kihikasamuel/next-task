@@ -107,3 +107,28 @@ module.exports.login = [
         });
     }
 ]
+
+// Get User
+module.exports.user = (req, res) => {
+    const bearerHeader = req.headers['authorization'];
+
+    if(bearerHeader !== undefined) {
+        const bearer = bearerHeader.split('');
+
+        // grab token 
+        const token = bearer[1];
+
+        // verify if token is valid'
+        jwt.verify(token, config.authSecret, (error, decoded) => {
+            if(error) {
+                return res.status(401).json({message: 'Unauthorized'})
+            }
+            else {
+                return res.status(200).json({user: decoded});
+            }
+        })
+    }
+    else {
+        return res.status(401).json({message: 'Unauthorized!'})
+    }
+}

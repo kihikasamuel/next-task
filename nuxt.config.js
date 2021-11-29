@@ -18,6 +18,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/defaults.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -35,6 +36,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/auth-next'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -44,6 +46,30 @@ export default {
   //allow additional routes inside the api
   serverMiddleware: [
     '~/api/main.js'
-  ]
+  ],
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/api/users/login', method: 'post'
+          },
+          logout: true,
+          user: {
+            url: '/api/users/user', method: 'get'
+          }
+        },
+        token: {
+          required: true,
+          type: 'Bearer',
+        },
+        user: {
+          // property: ''
+          // autoFetch: true
+        }
+      }
+    }
+  }
 
 }

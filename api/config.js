@@ -15,7 +15,7 @@ module.exports.isAuthenticated = function(req, res, next) {
         const bearer = bearerHeader.split('');
         // the token
         const token = bearer[1];
-        // verify the token
+        // verify the token and check if expired
         jwt.verify(token, config.authSecret, (err, decoded) => {
             if(err) {
                 return res.send(401);
