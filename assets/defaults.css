@@ -2,9 +2,12 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: rgb(86, 215, 247);
+    /* background-color: rgb(86, 215, 247); */
+    height: 100%;
 }
 
-.container {
+.cont {
     /* color: #000000; */
+    background: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+    min-height: 100vmin;
 }

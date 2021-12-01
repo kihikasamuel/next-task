@@ -1,9 +1,16 @@
 <template>
-    <div class="p-8">
-        <Register></Register>
+
+    <div class="main">
+
+        <NuxtLink to="/user/login">Login</NuxtLink>
+        <NuxtLink to="/user/register">Register</NuxtLink>
+
     </div>
+
 </template>
 
 <script>
-export default {}
+export default {
+    
+}
 </script>
