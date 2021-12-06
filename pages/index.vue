@@ -2,8 +2,8 @@
 
     <div class="main">
 
-        <NuxtLink to="/user/login">Login</NuxtLink>
-        <NuxtLink to="/user/register">Register</NuxtLink>
+        <nuxt-link to="/auth/login">Login</nuxt-link>
+        <nuxt-link to="/auth/register">Register</nuxt-link>
 
     </div>
 

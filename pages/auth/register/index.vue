@@ -1,5 +1,5 @@
 <template>
-    <home-home />
+    <auth-register />
 </template>
 
 <script>

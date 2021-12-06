@@ -10,7 +10,7 @@
             <span class="text-black-100">Full name</span>
             <input
               type="text"
-              v-model="fullname"
+              v-model="register.fullname"
               class="
                 mt-3
                 mb-3
@@ -24,13 +24,14 @@
                 focus:border-gray-600 focus:outline-none
               "
               placeholder="Sam Reese"
+              required
             />
           </label>
           <label for="username" class="block">
             <span class="text-black-100">Username</span>
             <input
               type="email"
-              v-model="username"
+              v-model="register.username"
               class="
                 mt-3
                 mb-3
@@ -51,7 +52,7 @@
             <span class="text-black-100">Password</span>
             <input
               type="password"
-              v-model="password"
+              v-model="register.password"
               class="
                 mt-3
                 mb-3
@@ -71,7 +72,7 @@
             <span class="text-black-100">Confirm password</span>
             <input
               type="password"
-              v-model="confirm_password"
+              v-model="register.confirm_password"
               class="
                 mt-3
                 mb-3
@@ -84,10 +85,18 @@
                 border-0 border-b-2 border-gray-300
                 focus:border-gray-600 focus:outline-none
               "
+              required
             />
           </label>
           <label for="checkbox">
-            <input type="checkbox" v-model="signed_terms" name="terms" id="" class="rounded" />
+            <input
+              type="checkbox"
+              v-model="register.signed_terms"
+              name="terms"
+              id=""
+              class="rounded"
+              required
+            />
             <span class="text-black-100">I agree to <a class="text-green-500" href="/terms-of-service">the terms of service</a></span>
           </label>
           <button
@@ -107,7 +116,7 @@
           <p class="mt-3 text-center"><small>Have an account? <Nuxt-Link to="/login" class="text-blue-650">Sign in</Nuxt-Link></small></p>
         </form>
       </div>
-      <Nuxt :nuxtChildKey="userRegister"/>
+      <Nuxt/>
     </div>
   </div>
 </template>
@@ -115,16 +124,15 @@
 <script>
 // import axios from 'vue-axios';
 export default {
-  userRegister(router) {
-    return router.fullPath;
-  },
   data() {
     return {
-      fullname: this.fullname,
-      username: this.username,
-      password:this.password,
-      confirm_password: this.confirmPassword,
-      signed_terms: this.signed_terms
+      register: {
+        fullname: this.fullname,
+        username: this.username,
+        password:this.password,
+        confirm_password: this.confirmPassword,
+        signed_terms: this.signed_terms
+      }
     }
   },
   methods: {

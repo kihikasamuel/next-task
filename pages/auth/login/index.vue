@@ -1,7 +1,6 @@
 <template>
-    <home-home />
+    <auth-login />
 </template>
-
 <script>
 export default {
     

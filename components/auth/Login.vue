@@ -79,7 +79,7 @@
           </p>
         </form>
       </div>
-      <Nuxt :nuxtChildKey="userLogin" />
+      <Nuxt />
     </div>
   </div>
 </template>
@@ -87,9 +87,6 @@
 <script>
 export default {
   computed: {
-    userLogin(route) {
-      return route.fullPath;
-    },
   },
   data() {
     return {
