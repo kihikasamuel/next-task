@@ -23,6 +23,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -45,7 +46,8 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth',
+    '@nuxtjs/axios'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -71,15 +73,40 @@ export default {
           }
         },
         token: {
+          property: 'token',
           required: true,
+          global: true,
           type: 'Bearer',
         },
         user: {
-          // property: ''
-          // autoFetch: true
+          property: 'user',
+          autoFetch: true
         }
       }
-    }
-  }
+    },
+    redirect: {
+      login: '/user/dashboard',
+      logout: '/',
+      home: '/'
+    },
+    rewriteRedirects: true,
+    // plugins: ['~/plugins/axios.js']
+  },
+
+  // axios config
+  axios: {
+    baseURL: "http://localhost:3000"
+  },
+  // headers: {
+  //   common: {
+  //     'Accept': 'application/json, text/plain, */*'
+  //   },
+  //   delete: {},
+  //   get: {},
+  //   head: {},
+  //   post: {},
+  //   put: {},
+  //   patch: {}
+  // }
 
 }
