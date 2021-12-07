@@ -30,12 +30,14 @@ module.exports.register = [
     'Password must 6 character or longer and must contain atleast an uppercase letters, numbers and special characters')
     .isLength({min: 6}).isStrongPassword(),
 
+    validator.body('signed_terms', 'Please accept our terms and conditions to continue').notEmpty(),
+
     function(req, res) {
 
         // after checking validations errors, throw them if any
         const errors = validator.validationResult(req);
         if(!errors.isEmpty()) {
-            return res.status(422).json({message:"An error occured!", error: errors});
+            return res.status(422).json({errors:errors.mapped()});
         }
 
         // initialize data to be sent
@@ -43,6 +45,7 @@ module.exports.register = [
         user.username = req.body.username;
         user.fullname = req.body.full_name;
         user.password = req.body.password;
+        user.tc_accepted = req.body.signed_terms;
 
         // generate a unique alphanum ID
         let u_id = Math.random().toString(36).slice(2);
@@ -66,19 +69,19 @@ module.exports.register = [
 
 // login
 module.exports.login = [
-    validator.body('username', 'Please enter a valid email!').isEmail(),
-    validator.body('password', 'Wrong password').isLength({min:6}).isStrongPassword(),
+    validator.body('username', 'User with this email does not exist!').isEmail(),
+    validator.body('password', 'Password too short or incorrect!').isLength({min:6}).isStrongPassword(),
 
     function(req, res) {
         const errors = validator.validationResult(req);
         if(!errors.isEmpty()) {
-            return res.status(422).json({message:errors.mapped()});
+            return res.status(422).json({errors:errors.mapped()});
         }
 
         // check if email and password matches
         conn.query('SELECT * FROM users_tbl WHERE username=?', req.body.username, (err, results, fields) =>{
             if(err){
-                return res.status(500).json({message:err.mapped()});
+                return res.status(500).json({errors:err.mapped()});
             }
 
             if(results.length > 0) {
@@ -97,12 +100,12 @@ module.exports.login = [
                         })
                     }
                     else{
-                        return res.status(500).json({message:"Invalid username or password!"})
+                        return res.status(500).json({errors:{msg:"Invalid username or password!"}})
                     }
                 })
             }
             else{
-                return res.status(500).json({message:"Invalid username or password!"})
+                return res.status(500).json({errors:"Invalid username or password!"})
             }
         });
     }
