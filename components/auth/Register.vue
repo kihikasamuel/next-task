@@ -196,29 +196,7 @@ export default {
                             position: 'top-center',
                             duration: 7000
                         });
-                    })
-                    .then(()=>{
-                        setTimeout(()=>{
-                            const response = this.$auth.loginWith("local", {
-                                data: {
-                                    username: this.username,
-                                    password: this.password,
-                                }
-                            });
-                        })
-                    })
-                    .then((response)=>{
-                        this.$toast.success('Logged In!',{
-                            action: {
-                                text: 'X',
-                                onClick:(e, toastObj) => {
-                                toastObj.goAway(0);
-                                }
-                            },
-                            position: 'top-center',
-                            duration: 7000
-                        });
-                        this.$router.replace('/user/dashboard');
+                        // this.push('/auth/login');
                     })
                     .finally(()=>{
                         this.loading = false;

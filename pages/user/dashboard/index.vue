@@ -1,5 +1,8 @@
 <template>
-    <landing-main />
+    <div class="w-full grid grid-cols-6 p-0 rounded">
+        <landing-sidebar />
+        <landing-main />
+    </div>
 </template>
 
 <script>
