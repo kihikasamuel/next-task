@@ -1,5 +1,9 @@
 <template>
-    <div>
-        <h3>User DashBoard</h3>
-    </div>
+    <landing-main />
 </template>
+
+<script>
+export default {
+    middleware: 'auth',
+}
+</script>

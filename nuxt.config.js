@@ -47,7 +47,8 @@ export default {
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
         '@nuxtjs/auth',
-        '@nuxtjs/axios'
+        '@nuxtjs/axios',
+        '@nuxtjs/toast'
     ],
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -65,17 +66,17 @@ export default {
             local: {
                 endpoints: {
                     login: {
-                        url: '/api/users/login', method: 'post'
+                        url: '/api/users/login', method: 'post', propertyName: 'token'
                     },
                     logout: true,
                     user: {
-                        url: '/api/users/user', method: 'get'
+                        url: '/api/users/user', method: 'get', propertyName: 'user'
                     }
                 },
                 token: {
                     property: 'token',
                     required: true,
-                    // global: true,
+                    global: true,
                     type: 'Bearer',
                 },
                 user: {
@@ -85,28 +86,19 @@ export default {
             }
         },
         redirect: {
-            login: '/user/dashboard',
-            logout: '/',
+            login: '/auth/login',
             home: '/'
         },
         rewriteRedirects: true,
-        // plugins: ['~/plugins/axios.js']
     },
 
+    // middleware
+    // middleware: ['auth'],
     // axios config
     axios: {
         baseURL: "http://localhost:3000"
     },
-    // headers: {
-    //   common: {
-    //     'Accept': 'application/json, text/plain, */*'
-    //   },
-    //   delete: {},
-    //   get: {},
-    //   head: {},
-    //   post: {},
-    //   put: {},
-    //   patch: {}
-    // }
+
+    // one day in september a movie
 
 }

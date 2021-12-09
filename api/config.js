@@ -12,21 +12,22 @@ module.exports.isAuthenticated = function(req, res, next) {
 
     if(bearerHeader !== 'undefined') {
         // extract token
-        const bearer = bearerHeader.split('');
+        const bearer = bearerHeader.split(' ');
         // the token
         const token = bearer[1];
         // verify the token and check if expired
-        jwt.verify(token, config.authSecret, (err, decoded) => {
+        return jwt.verify(token, config.authSecret, (err, decoded) => {
             if(err) {
-                return res.send(401);
+                return res.status(401).json({error:err});
             }
             else {
+                // return res.status(200).jsone({user:decoded});
                 return next();
             }
         })
     }
     else {
-        return res.sendStatus(401)
+        return res.status(401).json({error: "No token!"})
     }
 }
 

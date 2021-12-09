@@ -136,6 +136,7 @@
                         hover:bg-blue-650
                         focus:bg-blue-650
                         "
+                        :class="{}"
                     >
                         Submit
                     </button>
@@ -157,6 +158,7 @@
 <script>
 // import axios from 'vue-axios';
 export default {
+    middleware: 'guest',
     data() {
         return {
             register: {
@@ -167,13 +169,14 @@ export default {
             },
             confirm_password: "",
             isError: false,
-            errors: null
+            errors: null,
+            loading: false
         };
     },
     methods: {
         async signUp() {
             if(this.register.password !== this.confirmPassword) {
-                // this.isError = true;
+                this.loading = true;
                 try {
 
                     const user = await this.$axios.$post('/api/users/register', {
@@ -182,10 +185,44 @@ export default {
                         password: this.register.password,
                         signed_terms: this.register.signed_terms
                     })
-                    // create a toast
-                    console.log(user.message);
-                    // then push user to login
-                    // this.$router.push(/auth/login)
+                    .then((user)=>{
+                        this.$toast.success(user.message,{
+                            action: {
+                                text: 'X',
+                                onClick:(e, toastObj) => {
+                                toastObj.goAway(0);
+                                }
+                            },
+                            position: 'top-center',
+                            duration: 7000
+                        });
+                    })
+                    .then(()=>{
+                        setTimeout(()=>{
+                            const response = this.$auth.loginWith("local", {
+                                data: {
+                                    username: this.username,
+                                    password: this.password,
+                                }
+                            });
+                        })
+                    })
+                    .then((response)=>{
+                        this.$toast.success('Logged In!',{
+                            action: {
+                                text: 'X',
+                                onClick:(e, toastObj) => {
+                                toastObj.goAway(0);
+                                }
+                            },
+                            position: 'top-center',
+                            duration: 7000
+                        });
+                        this.$router.replace('/user/dashboard');
+                    })
+                    .finally(()=>{
+                        this.loading = false;
+                    })
 
                 } catch (error) {
 

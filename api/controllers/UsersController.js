@@ -100,38 +100,39 @@ module.exports.login = [
                         })
                     }
                     else{
-                        return res.status(500).json({errors:{msg:"Invalid username or password!"}})
+                        return res.status(500).json({errors:{'password':{'param':'password', 'msg': "Invalid Password!"}}})
                     }
                 })
             }
             else{
-                return res.status(500).json({errors:"Invalid username or password!"})
+                return res.status(500).json({errors:{'username':{'param':'username', 'msg': "Invalid username"}}});
             }
         });
     }
 ]
 
 // Get User
-module.exports.user = (req, res) => {
+module.exports.user = (req, res, next) => {
     const bearerHeader = req.headers['authorization'];
 
     if(bearerHeader !== undefined) {
-        const bearer = bearerHeader.split('');
+        const auth_string = bearerHeader.split(' ');
 
         // grab token 
-        const token = bearer[1];
+        const token = auth_string[1];
 
         // verify if token is valid'
         jwt.verify(token, config.authSecret, (error, decoded) => {
             if(error) {
-                return res.status(401).json({message: 'Unauthorized'})
+                return res.status(401).json({error: error})
             }
             else {
                 return res.status(200).json({user: decoded});
+                // return next();
             }
         })
     }
     else {
-        return res.status(401).json({message: 'Unauthorized!'})
+        return res.status(401).json({message: 'No token found!'})
     }
 }
