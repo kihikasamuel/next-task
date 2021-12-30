@@ -101,9 +101,13 @@
                                 border-0 border-b-2 border-gray-500
                                 focus:outline-none
                         "
-                        :class="{'border-red-500': isError, 'border-green-500': isError}"
+                        @keydown="checkPasswords"
+                        :class="{'border-red-500': passwordErr}"
                         required
                         />
+                        <span class="text-red-500 text-xs" v-if="passwordErr">
+                            {{passwordErr}}
+                        </span>
                     </label>
                     <label for="checkbox">
                         <input
@@ -170,12 +174,21 @@ export default {
             confirm_password: "",
             isError: false,
             errors: null,
-            loading: false
+            loading: false,
+            passwordErr: null,
         };
     },
     methods: {
+        checkPasswords() {
+            if(this.confirmPassword != this.register.password) {
+                // this.passwordErr = "Confirm password value does not match password";
+            }
+
+            if(this.confirmPassword == this.register.password) {
+                // this.passwordErr = null;
+            }
+        },
         async signUp() {
-            if(this.register.password !== this.confirmPassword) {
                 this.loading = true;
                 try {
 
@@ -196,7 +209,7 @@ export default {
                             position: 'top-center',
                             duration: 7000
                         });
-                        // this.push('/auth/login');
+                        this.$router.push('/auth/login');
                     })
                     .finally(()=>{
                         this.loading = false;
@@ -210,10 +223,7 @@ export default {
                     }
 
                 }
-            }
-            else {
-                this.isError = false;
-            }
+            // else{}
         }
     },
 };

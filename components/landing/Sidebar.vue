@@ -1,44 +1,47 @@
 <template>
-    <section class="col-span-1 bg-white-500 z-index-10 p-4 rounded shadow-blue-500">
+    <section class="md:col-span-1 bg-white-500 z-20 p-4 rounded shadow-blue-500">
         <div class="mb-7 p-4 sticky top-0">
             <font-awesome-icon :icon="['fas', 'check-circle']" />
-            <strong class="">NextTask</strong>
+            <strong class="md">NextTask</strong>
         </div>
-        <div class="flex flex-col content-center w-full overflow-y-auto">
-            <!-- <div class="mb-7 p-4">
-                <font-awesome-icon :icon="['fas', 'check-circle']" />
-                <strong class="">NextTask</strong>
-            </div> -->
+        <div class="flex flex-col sm:col-span-4 content-center w-full overflow-y-scroll">
 
             <!-- start side navigation links -->
-            <div class="p-4 hover:bg-gray-400 hover:text-black-500 rounded">
+            <Nuxt-Link to="/user/dashboard" class="p-4 hover:bg-gray-100 hover:text-blue-500 rounded">
                 <font-awesome-icon :icon="['fas', 'home']" />
-                <Nuxt-Link to="/user/dashboard">Dashboard</Nuxt-Link>
-            </div>
-            <div class="p-4 hover:bg-gray-400 hover:text-black-500 rounded">
+                Dashboard
+                <!-- <span class="sm-only"><font-awesome-icon :icon="['fas', 'home']" /></span> -->
+            </Nuxt-Link>
+            
+            <Nuxt-Link to="/user/dashboard" class="p-4 hover:bg-gray-100 hover:text-blue-500 rounded">
                 <font-awesome-icon :icon="['fas', 'tasks']" />
-                <Nuxt-Link to="/user/dashboard">Tasks</Nuxt-Link>
-            </div>
-            <div class="p-4 hover:bg-gray-400 hover:text-black-500 rounded">
+                Tasks
+            </Nuxt-Link>
+            
+            <Nuxt-Link to="/user/dashboard" class="p-4 hover:bg-gray-100 hover:text-blue-500 rounded">
                 <font-awesome-icon :icon="['fas', 'project-diagram']" />
-                <Nuxt-Link to="/user/dashboard">Projects</Nuxt-Link>
-            </div>
-            <div class="p-4 hover:bg-gray-400 hover:text-black-500 rounded">
+                Projects
+            </Nuxt-Link>
+            
+            <Nuxt-Link to="/user/dashboard" class="p-4 hover:bg-gray-100 hover:text-blue-500 rounded">
                 <font-awesome-icon :icon="['fas', 'users']" />
-                <Nuxt-Link to="/user/dashboard">Teams</Nuxt-Link>
-            </div>
-            <div class="p-4 hover:bg-gray-400 hover:text-black-500 rounded">
+                Teams
+            </Nuxt-Link>
+            
+            <Nuxt-Link to="/user/dashboard" class="p-4 hover:bg-gray-100 hover:text-blue-500 rounded">
                 <font-awesome-icon :icon="['fas', 'calendar']" />
-                <Nuxt-Link to="/user/dashboard">Calendar</Nuxt-Link>
-            </div>
-            <div class="p-4 hover:bg-gray-400 hover:text-black-500 rounded">
+                Calendar
+            </Nuxt-Link>
+            
+            <Nuxt-Link to="/user/dashboard" class="p-4 hover:bg-gray-100 hover:text-blue-500 rounded">
                 <font-awesome-icon :icon="['fas', 'user-cog']" />
-                <Nuxt-Link to="/user/dashboard">Settings</Nuxt-Link>
-            </div>
-            <div class="p-4 hover:bg-gray-400 hover:text-black-500 rounded">
-                <font-awesome-icon :icon="['fas', 'sign-out-alt']" />
-                <a href="#" @click="logout">Logout</a>
-            </div>
+                Settings
+            </Nuxt-Link>
+            
+            <a href="#" @click="logout" class="p-4 hover:bg-gray-100 hover:text-blue-500 rounded">
+                <font-awesome-icon :icon="['fas', 'sign-out-alt']"/>
+                Logout
+            </a>
             <!-- end side navigation links -->
         </div>
     </section>

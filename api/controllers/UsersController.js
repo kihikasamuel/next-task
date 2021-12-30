@@ -100,12 +100,12 @@ module.exports.login = [
                         })
                     }
                     else{
-                        return res.status(500).json({errors:{'password':{'param':'password', 'msg': "Invalid Password!"}}})
+                        return res.status(500).json({errors: "Invalid Password!"});
                     }
                 })
             }
             else{
-                return res.status(500).json({errors:{'username':{'param':'username', 'msg': "Invalid username"}}});
+                return res.status(500).json({errors: "Invalid credentials!"});
             }
         });
     }
@@ -124,7 +124,7 @@ module.exports.user = (req, res, next) => {
         // verify if token is valid'
         jwt.verify(token, config.authSecret, (error, decoded) => {
             if(error) {
-                return res.status(401).json({error: error})
+                return res.status(401).json({errorors: error.mapped()})
             }
             else {
                 return res.status(200).json({user: decoded});
