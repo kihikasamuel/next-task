@@ -10,6 +10,9 @@ module.exports = {
                 },
             },
         },
+        fontFamily: {
+            'sans': ['Noto Sans', ]
+        }
     },
     plugin: [
         require('@tailwindcss/forms'),

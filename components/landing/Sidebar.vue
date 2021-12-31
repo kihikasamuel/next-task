@@ -1,5 +1,5 @@
 <template>
-    <section class="md:col-span-1 bg-white-500 z-20 p-4 rounded shadow-blue-500">
+    <section class="md:col-span-1 bg-white-500 z-20 mt-0 p-4 rounded shadow-blue-500">
         <div class="mb-7 p-4 sticky top-0">
             <font-awesome-icon :icon="['fas', 'check-circle']" />
             <strong class="md">NextTask</strong>
