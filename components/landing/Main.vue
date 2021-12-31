@@ -15,15 +15,14 @@
                         type="search"
                         class="
                             w-3/4
-                            rounded-md
                             px-3 py-2
-                            focus:outline-none
+                            rounded-md
                             text-gray-400
-                            mr-3
-                            col-span
+                            border-2 border-gray-200
+                            focus:outline-none
                         "
                         placeholder="Search tasks, teams, schedules.."
-                        autocomplete="of"
+                        autocomplete="on"
                     />
                 </label>
             </div>
@@ -31,13 +30,13 @@
             
             <!-- avatar begins -->
             <div class="md:col-span-2">
-                <div class="float-right">
+                <div class="float-right p-3 border-2 border-gray-100 rounded-full">
+                    <span class="rounded-2xl border-2 border-gray-200 ring-2 mr-2">
+                        <img src="~assets/imgs/avatar.png" class="w-8 h-8" alt="">
+                    </span>
                     <span class="text-xs">
-                    {{loggedinuser.fullname}}
-                </span>
-                <span class="w-1/2 h-1/2 rounded-full border-2 b border-black p-2">
-
-                </span>
+                        {{loggedinuser.fullname}}
+                    </span>
                 </div>
             </div>
             <!-- avatar ends -->

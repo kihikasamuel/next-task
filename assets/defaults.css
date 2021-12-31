@@ -8,6 +8,6 @@ body {
 
 .cont {
     /* color: #000000; */
-    background: linear-gradient(to top, #00c6fb 0%, #005bea 100%);
+    background: linear-gradient(to top, #ffffff 0%, #f8f8fa 100%);
     min-height: 100vmin;
 }

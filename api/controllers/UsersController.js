@@ -94,9 +94,9 @@ module.exports.login = [
                                 id: user.id,
                                 username: user.username,
                                 fullname: user.fullname,
-                                uid: user.company_uid
+                                company: user.company_uid
                             },
-                            token: jwt.sign({id:user.id, username:user.username, fullname:user.fullname, uid:user.uid}, config.authSecret)
+                            token: jwt.sign({id:user.id, username:user.username, fullname:user.fullname, companyid:user.company_uid}, config.authSecret)
                         })
                     }
                     else{

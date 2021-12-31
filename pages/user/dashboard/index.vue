@@ -11,7 +11,7 @@ export default {
     middleware: 'auth',
     data() {
         return {
-            user: this.$auth.state.user,
+            user: this.$auth.$state.user,
         }
     },
     computed: {

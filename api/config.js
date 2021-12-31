@@ -6,7 +6,7 @@ const config = {
 
 module.exports = config;
 
-// check if user is authenticated.
+// check if user is authenticated and heads to dashboard else fallsback to login.
 module.exports.isAuthenticated = function(req, res, next) {
     const bearerHeader = req.headers['authorization'];
 
