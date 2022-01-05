@@ -8,7 +8,7 @@
 
             <!-- start side navigation links -->
             <Nuxt-Link to="/user/dashboard" class="p-4 hover:bg-gray-100 hover:text-blue-500 rounded">
-                <font-awesome-icon :icon="['fas', 'home']" />
+                <font-awesome-icon :icon="['fas', 'chart-pie']" />
                 Dashboard
                 <!-- <span class="sm-only"><font-awesome-icon :icon="['fas', 'home']" /></span> -->
             </Nuxt-Link>

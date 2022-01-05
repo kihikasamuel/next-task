@@ -178,14 +178,19 @@ export default {
             passwordErr: null,
         };
     },
+    watch: {
+        passwordWatcher(value) {
+            this.confirm_password = value;
+            this.checkPassword(value);
+        }
+    },
     methods: {
         checkPasswords() {
-            if(this.confirmPassword != this.register.password) {
-                // this.passwordErr = "Confirm password value does not match password";
+            if(this.confirmPassword !== this.register.password) {
+                this.passwordErr = "Confirm password value does not match password";
             }
-
-            if(this.confirmPassword == this.register.password) {
-                // this.passwordErr = null;
+            else{
+                this.passwordErr = "";
             }
         },
         async signUp() {
