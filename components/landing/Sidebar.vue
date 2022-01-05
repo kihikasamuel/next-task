@@ -4,7 +4,7 @@
             <font-awesome-icon :icon="['fas', 'check-circle']" />
             <strong class="md">NextTask</strong>
         </div>
-        <div class="flex flex-col sm:col-span-4 content-center w-full overflow-y-scroll">
+        <div class="flex flex-col sm:col-span-4 content-center w-full">
 
             <!-- start side navigation links -->
             <Nuxt-Link to="/user/dashboard" class="p-4 hover:bg-gray-100 hover:text-blue-500 rounded">

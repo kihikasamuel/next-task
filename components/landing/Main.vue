@@ -1,6 +1,6 @@
 <template>
   <section
-    class="md:col-span-5 z-0 cont rounded overflow-y-none scroll-none"
+    class="md:col-span-5 z-0 cont rounded scroll-none border-2 border-gray-200"
   >
     <!-- <div class="cont"> -->
 
@@ -30,7 +30,7 @@
             
             <!-- avatar begins -->
             <div class="md:col-span-2">
-                <div class="flex md:flex-row md:float-right border-0 border-gray-100 md:w-2/4 md:h-10 p-1 content-center">
+                <div class="flex md:flex-row md:float-right border-0 border-gray-100 md:w-2/4 md:h-10 p-1 content-center cursor-pointer">
                     <span class="border-2 border-gray-200 rounded-full">
                         <img src="~assets/imgs/avatar.png" class="w-8 h-8" alt="">
                     </span>
@@ -56,16 +56,16 @@
 
             <!-- team avatars goes-here -->
             <div class="md:col-span-2">
-                <div class="flex md:flex-row">
-                    <!-- <span class="border-2 border-gray-200 rounded-full">
+                <div class="flex md:flex-row md:w-2/4 md:float-right">
+                    <span class="border-2 border-gray-200 rounded-full z-10 relative right-0">
                         <img src="~assets/imgs/avatar.png" class="w-8 h-8" alt="">
                     </span>
-                    <span class="border-2 border-gray-200 rounded-full">
-                        <img src="~assets/imgs/avatar.png" class="w-8 h-8 pl-0" alt="">
+                    <span class="border-2 border-gray-200 rounded-full z-20 relative">
+                        <img src="~assets/imgs/avatar.png" class="w-8 h-8" alt="">
                     </span>
-                    <span class="border-2 border-gray-200 rounded-full">
-                        <img src="~assets/imgs/avatar.png" class="w-8 h-8 pl-0 ml-0" alt="">
-                    </span> -->
+                    <span class="border-2 border-gray-200 rounded-full z-30 relative">
+                        <img src="~assets/imgs/avatar.png" class="w-8 h-8" alt="">
+                    </span>
                 </div>
             </div>
             <!-- end team avatars -->
@@ -101,12 +101,12 @@
             </div>
 
             <div class="md:col-span-2 text-white">
-                <div class="flex md:flex-row md:w-3/4 md:justify-end">
-                    <button type="button" class="text-black px-3 py-1 rounded-md bg-gray-100 mr-1">
+                <div class="flex md:flex-row md:w-3/4 md:float-right content-center">
+                    <button type="button" class="text-black px-3 border-2 border-black-200 rounded-md bg-gray-100 mr-2">
                         <font-awesome-icon :icon="['fas', 'share-alt']" />
                         Share
                     </button>
-                    <button type="button" class="px-3 py-1 rounded-md bg-blue-400">
+                    <button type="button" class="px-6 rounded-md bg-blue-700">
                         <font-awesome-icon :icon="['fas', 'plus']" />
                         Add New
                     </button>
@@ -116,7 +116,7 @@
         <!-- END row 3 -->
 
         <!-- BEGIN fetched content based on links -->
-        <landing-dynamicload></landing-dynamicload>
+        <landing-dynamicload :date="currentDate"></landing-dynamicload>
         <!-- END fetched content based on links -->
 
     <!-- </div> -->
