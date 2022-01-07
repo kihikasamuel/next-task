@@ -12,10 +12,10 @@
         class="w-full md:w-1/3 lg:w-1/4 bg-white p-5 md:p-10 rounded-2xl z-20"
       >
         <h1 class="text-center font-extrabold">Login</h1>
-        <span class="text-red-500 text-xs" v-if="errors"> 
-          {{errors}}
-        </span>
         <form action="" class="text-black-500 pt-4" @submit.prevent="login">
+          <span class="text-red-500 text-xs" v-if="errors"> 
+            {{errors.password.msg || errors.username.msg || errors}}
+          </span>
           <label for="username" class="block">
             <span class="text-black-100">Username</span>
             <input

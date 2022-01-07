@@ -11,3 +11,6 @@ body {
     background: linear-gradient(to top, #f8f8f6 0%, #f7f7f5 100%);
     min-height: 100vmin;
 }
+.user-name {
+    text-transform: capitalize;
+}

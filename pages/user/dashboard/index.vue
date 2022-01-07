@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full grid md:grid-cols-6 p-0 rounded overflow-none" v-if="isAuthenticated">        
+    <div class="w-full grid md:grid-cols-6 p-0 rounded" v-if="isAuthenticated">        
         <landing-sidebar/>
         <landing-main :loggedinuser="user" />
     </div>
@@ -18,7 +18,7 @@ export default {
         ...mapGetters(['isAuthenticated', 'loggedInUser']),
     },
     mounted() {
-        console.log(this.user);
+        //
     }
 }
 </script>

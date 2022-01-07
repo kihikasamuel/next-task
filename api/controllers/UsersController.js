@@ -69,7 +69,7 @@ module.exports.register = [
 
 // login
 module.exports.login = [
-    validator.body('username', 'User with this email does not exist!').isEmail(),
+    validator.body('username', 'Invalid Email!').isEmail(),
     validator.body('password', 'Password too short or incorrect!').isLength({min:6}).isStrongPassword(),
 
     function(req, res) {

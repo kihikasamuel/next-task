@@ -1,8 +1,8 @@
 <template>
   <section
-    class="md:col-span-5 z-0 cont rounded scroll-none border-2 border-gray-200"
+    class="md:col-span-5 cont rounded scroll-none border-2 border-gray-200"
   >
-    <!-- <div class="cont"> -->
+    <div class="sticky top-0 brightness-0">
 
         <!-- BEGIN row 1 -->
         <div class="grid md:grid-cols-6 px-4 pt-4 bg-white">
@@ -34,7 +34,7 @@
                     <span class="border-2 border-gray-200 rounded-full">
                         <img src="~assets/imgs/avatar.png" class="w-8 h-8" alt="">
                     </span>
-                    <span class="text-xs pl-1 pt-3 pb-3 pr-1">
+                    <span class="text-xs pl-1 pt-3 pb-3 pr-1 user-name">
                         {{loggedinuser.fullname}}
                         <font-awesome-icon class="accent-pink-500" :icon="['fas', 'angle-down']"/>
                     </span>
@@ -56,7 +56,7 @@
 
             <!-- team avatars goes-here -->
             <div class="md:col-span-2">
-                <div class="flex md:flex-row md:w-2/4 md:float-right">
+                <!-- <div class="flex md:flex-row md:w-2/4 md:float-right">
                     <span class="border-2 border-gray-200 rounded-full z-10 relative right-0">
                         <img src="~assets/imgs/avatar.png" class="w-8 h-8" alt="">
                     </span>
@@ -66,7 +66,7 @@
                     <span class="border-2 border-gray-200 rounded-full z-30 relative">
                         <img src="~assets/imgs/avatar.png" class="w-8 h-8" alt="">
                     </span>
-                </div>
+                </div> -->
             </div>
             <!-- end team avatars -->
 
@@ -106,7 +106,7 @@
                         <font-awesome-icon :icon="['fas', 'share-alt']" />
                         Share
                     </button>
-                    <button type="button" class="px-6 rounded-md bg-blue-700">
+                    <button type="button" class="md:px-6 sm:px-2 py-1 rounded-md bg-blue-700" @click="showModal">
                         <font-awesome-icon :icon="['fas', 'plus']" />
                         Add New
                     </button>
@@ -115,11 +115,34 @@
         </div>
         <!-- END row 3 -->
 
-        <!-- BEGIN fetched content based on links -->
-        <landing-dynamicload :date="currentDate"></landing-dynamicload>
-        <!-- END fetched content based on links -->
+        
 
-    <!-- </div> -->
+    </div>
+        <!-- BEGIN fetched content based on links -->
+        <landing-frame :date="currentDate"></landing-frame>
+        <!-- END fetched content based on links -->
+        <!-- BEGIN Modal -->
+        <landing-addtaskmodal
+            v-show="isModalVisible"
+            @close="closeModal"
+        />
+        <landing-addtaskmodal
+            v-show="isModalVisible"
+            @close="closeModal"
+        />
+        <landing-addtaskmodal
+            v-show="isModalVisible"
+            @close="closeModal"
+        />
+        <landing-addtaskmodal
+            v-show="isModalVisible"
+            @close="closeModal"
+        />
+        <landing-addtaskmodal
+            v-show="isModalVisible"
+            @close="closeModal"
+        />
+        <!-- END Modal -->
   </section>
 </template>
 <script>
@@ -128,8 +151,17 @@ export default {
     props:['loggedinuser'],
     data() {
         return {
-            currentDate: new Date().toDateString()
+            currentDate: new Date().toDateString(),
+            isModalVisible: true,
         }
     },
+    methods: {
+        showModal() {
+            this.isModalVisible = true;
+        },
+        closeModal() {
+            this.isModalVisible = false
+        }
+    }
 }
 </script>
