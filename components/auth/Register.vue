@@ -197,7 +197,7 @@ export default {
                 this.loading = true;
                 try {
 
-                    const user = await this.$axios.$post('/api/users/register', {
+                    await this.$axios.$post('/api/users/register', {
                         full_name: this.register.fullname,
                         username: this.register.username,
                         password: this.register.password,

@@ -100,12 +100,12 @@ module.exports.login = [
                         })
                     }
                     else{
-                        return res.status(500).json({errors: "Invalid Password!"});
+                        return res.status(500).json({errors: 'Invalid Password!'});
                     }
                 })
             }
             else{
-                return res.status(500).json({errors: "Invalid credentials!"});
+                return res.status(500).json({errors: 'Invalid credentials!'});
             }
         });
     }

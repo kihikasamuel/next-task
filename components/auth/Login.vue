@@ -16,6 +16,9 @@
           <span class="text-red-500 text-xs" v-if="errors"> 
             {{errors.password.msg || errors.username.msg || errors}}
           </span>
+          <span class="text-red-500 text-xs" v-if="login_err"> 
+            {{login_err}}
+          </span>
           <label for="username" class="block">
             <span class="text-black-100">Username</span>
             <input
@@ -100,19 +103,21 @@ export default {
       errors: null,
       success: false,
       loading: false,
+      login_err: null
     };
   },
   methods: {
     async login() {
       this.loading = true;
-      try {
-          const response = await this.$auth.loginWith("local", {
+      // try {
+          // const response = 
+          await this.$auth.loginWith("local", {
             data: {
               username: this.username,
               password: this.password,
             },
           })
-          .then(() => {
+          .then((response) => {
             this.$toast.success("Logged in successfully!", {
               action: {
                 text: "X",
@@ -125,16 +130,22 @@ export default {
             });
             this.$router.replace("/user/dashboard");
           })
+          .catch((error) => {
+            console.log(error);
+            if(error.response.data) {
+              this.login_err = error.response.data.errors;
+            }
+          })
           .finally(() => {
             this.loading = false;
           });
-      }catch (error) {
-        // console.log(error)
-        if(error.response.data) {
-            this.errors = error.response.data.errors;
-            // console.log(this.errors);
-        }
-      }
+      // }catch (error) {
+      //   // console.log(error)
+      //   if(error.response.data) {
+      //       this.errors = error.response.data.errors;
+      //       // console.log(this.errors);
+      //   }
+      // }
     },
   },
 };
