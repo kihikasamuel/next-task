@@ -14,8 +14,5 @@ export default {
 </script>
 
 <style scoped>
-.main 
-{
-    background-image: linear-gradient(to right top, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8);
-}
+
 </style>

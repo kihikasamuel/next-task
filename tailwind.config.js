@@ -11,7 +11,8 @@ module.exports = {
             },
         },
         fontFamily: {
-            'sans': ['Noto Sans', ]
+            'sans': ['Noto Sans', ],
+            'narrow': ['"PT Sans Narrow"']
         }
     },
     plugin: [

@@ -1,5 +1,8 @@
 <template>
-    <auth-register />
+    <div class="main">
+        <header-navbar />
+        <auth-register />
+    </div>
 </template>
 
 <script>

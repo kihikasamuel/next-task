@@ -1,29 +1,80 @@
 <template>
-    <div class="grid grid-cols-12">
-        <div class="col-span-8">
-            
+    <div class="grid md:grid-cols-12">
+        <div class="col-span-6">
+            <div class="flex flex-col justify-items-center">
+                <div class="p-10 md:mt-5 md:ml-20">
+                    <h1 
+                        class="
+                            font-narrow font-black non-italic ordinal
+                            text-3xl
+                        "
+                    >
+                        The easiest way to schedule your tasks.
+                    </h1>
+                    <button 
+                        class="
+                            text-white font-bold
+                            mt-5 bg-pink-500 
+                            px-5 py-3 rounded
+                            shadow-xl shadow-gray-600 
+                            hover:bg-pink-800 hover:shadow-2xl
+                        "
+                        @click="goTo"
+                    >
+                    Get Started
+                    <font-awesome-icon :icon="['fas', 'angle-right']"/>
+                    </button>
+                    <span class="text-gray-500">Free for life.</span>
+                    <span class="text-gray-500">No credit card.</span>
+                </div>
+            </div>
         </div>
-        <div class="col-span-4 blob">
-            <!-- <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#A7F0BA" d="M61.4,-33.1C74.9,-12.2,77.8,17.2,65.8,37.7C53.8,58.1,26.9,69.6,4.5,66.9C-17.8,64.3,-35.7,47.6,-40.5,31.3C-45.4,15,-37.3,-0.9,-28.4,-19.3C-19.4,-37.6,-9.7,-58.4,7.1,-62.5C24,-66.6,48,-54.1,61.4,-33.1Z" transform="translate(100 100)" />
-            </svg> -->
-            <h1>
-                
-            </h1>
+        <div class="col-span-6 bg-left text-center">
+            <div 
+                class="
+                    flex flex-row sm:flex-col
+                    doodles mt-2
+                    justify-start
+                "
+            >
+                <img src="/images/scheduleyourtodos.jpg" alt="schedule" class="mix-blend-multiply">
+                <!-- doodles goes here -->
+                <!-- <font-awesome-icon class="text-pink-600 float-right" :icon="['fas', 'clock']"/> -->
+                <!-- <font-awesome-icon class="text-black-400" :icon="['fas', 'clock']"/> -->
+                <!-- <font-awesome-icon class="text-green-500" :icon="['fas', 'calendar-check']"/> -->
+                <!-- <font-awesome-icon class="text-pink-600" :icon="['fas', 'clock']"/> -->
+            </div>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    
+    data() 
+    {
+        return {
+
+        }
+    },
+    methods: {
+        goTo() 
+        {
+            this.$router.push('/auth/register')
+        }
+    }
 }
 </script>
 
 <style scoped>
-.blob 
+.bg-left
 {
-    background: url(blob.svg);
-    background-size: 300px 100px;
+    /* width: 100%; */
+    height: 500px;
+    background: url(/images/blob.svg) no-repeat;
+    margin-top: -50px;
+}
+.doodles 
+{
+    font-size: 70px;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="p-2 md:p-8 cont">
+    <div class="p-2 ">
         <div
         class="
             grid grid-cols-1
@@ -9,7 +9,7 @@
         "
         >
             <div
-                class="w-full md:w-1/2 lg:w-1/3 bg-white p-10 md:p-20 rounded-2xl z-20"
+                class="xs:w-full md:w-1/2 lg:w-1/3 bg-white p-10 md:p-20 rounded-2xl z-20"
             >
                 <h1 class="text-center font-extrabold">REGISTER</h1>
                 <form action="" class="text-black-500 pt-4" @submit.prevent="signUp">

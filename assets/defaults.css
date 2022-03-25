@@ -1,16 +1,42 @@
+/* import fonts */
+@font-face {
+    font-family: "PT Sans Narrow";
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+        url('fonts/pt-sans-narrow-v16-latin/pt-sans-narrow-v16-latin-regular.woff'),
+        url('fonts/pt-sans-narrow-v16-latin/pt-sans-narrow-v16-latin-regular.woff2');
+}
+
+@font-face {
+    font-family: "PT Sans Narrow";
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+        url('fonts/pt-sans-narrow-v16-latin/pt-sans-narrow-v16-latin-700.woff'),
+        url('fonts/pt-sans-narrow-v16-latin/pt-sans-narrow-v16-latin-700.woff2');
+}
+
+/* unset all properties */
 body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    background-image: linear-gradient(to right top, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8);
+    scroll-behavior: smooth;
     /* background-color: rgb(86, 215, 247); */
-    height: 100%;
+    /* height: 100%; */
 }
 
-.cont {
-    /* color: #000000; */
-    background: linear-gradient(to top, #f8f8f6 0%, #f7f7f5 100%);
-    min-height: 100vmin;
+/* main container for pages */
+.main 
+{
+    background-image: linear-gradient(to right top, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8);
+    min-height: 100vh;
+    margin-top: 30px;
 }
+
+/* forms */
 .user-name {
     text-transform: capitalize;
 }
