@@ -1,16 +1,16 @@
 <template>
     <nav class="grid grid-cols-12 w-full p-5 rounded static-top">
-            <div class="col-span-3 xs:col-span-12 text-center">
+            <div class="col-span-3 xs:col-span-12 md:ml-20 p-4 text-center">
                 <div class="flex flex-row col-span-12 float-left">
                     <nuxt-link
                         to="/"
                         class="
-                            text-black font-narrow font-bold font-3xl
+                            text-black font-narrow font-bold text-3xl
                             hover:text-indigo-700
                         "
                     >
-                        <font-awesome-icon :icon="['fas','book']"/>
-                        DIARY
+                        DIARY<font-awesome-icon :icon="['fas','calendar-check']"/>
+                        
                     </nuxt-link>
                 </div>
             </div>

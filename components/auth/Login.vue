@@ -13,10 +13,13 @@
       >
         <h1 class="text-center font-extrabold">Login</h1>
         <form action="" class="text-black-500 pt-4" @submit.prevent="login">
-          <span class="text-red-500 text-xs" v-if="errors"> 
-            {{errors.password.msg || errors.username.msg || errors}}
+          <span class="text-blue-500 text-xs" v-if="login_err && login_err.password">
+            {{ login_err.password.msg }}
           </span>
-          <span class="text-red-500 text-xs" v-if="login_err"> 
+          <span class="text-blue-500 text-xs" v-if="login_err && login_err.username">
+            {{ login_err.username.msg }}
+          </span>
+          <span class="text-red-500 text-xs" v-else>
             {{login_err}}
           </span>
           <label for="username" class="block">
