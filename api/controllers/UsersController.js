@@ -27,7 +27,7 @@ module.exports.register = [
     }),
     
     validator.body('password', 
-    'Password must 6 character or longer and must contain atleast an uppercase letters, numbers and special characters')
+    'Password must be 6 characters or longer and must contain atleast 1 uppercase letter, a number and a special character')
     .isLength({min: 6}).isStrongPassword(),
 
     validator.body('signed_terms', 'Please accept our terms and conditions to continue').notEmpty(),

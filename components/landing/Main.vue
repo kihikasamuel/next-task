@@ -1,6 +1,6 @@
 <template>
   <section
-    class="md:col-span-5 cont rounded scroll-none border-2 border-gray-200"
+    class="md:col-span-5 cont rounded scroll-none border-2 border-gray-200 bg-white"
   >
     <div class="sticky top-0 brightness-0">
 
@@ -126,7 +126,7 @@
             v-show="isModalVisible"
             @close="closeModal"
         />
-        <landing-addtaskmodal
+        <!-- <landing-addtaskmodal
             v-show="isModalVisible"
             @close="closeModal"
         />
@@ -141,7 +141,7 @@
         <landing-addtaskmodal
             v-show="isModalVisible"
             @close="closeModal"
-        />
+        /> -->
         <!-- END Modal -->
   </section>
 </template>

@@ -1,6 +1,6 @@
 <template>
-    <nav class="grid grid-cols-12 w-full p-5 rounded static-top">
-            <div class="col-span-3 xs:col-span-12 md:ml-20 p-4 text-center">
+    <nav class="grid grid-cols-12 w-full p-5 rounded sticky z-100 top-0">
+            <div class="col-span-3 xs:col-span-12 md:ml-20 pl-4 text-center">
                 <div class="flex flex-row col-span-12 float-left">
                     <nuxt-link
                         to="/"
@@ -9,7 +9,9 @@
                             hover:text-indigo-700
                         "
                     >
-                        DIARY<font-awesome-icon :icon="['fas','calendar-check']"/>
+                        <font-awesome-icon :icon="['fas', 'check-circle']" />
+                        <strong class="md">NexTask</strong>
+                        <!-- DIARY<font-awesome-icon :icon="['fas','calendar-check']"/> -->
                         
                     </nuxt-link>
                 </div>
@@ -83,5 +85,10 @@ nav {
     /* background-image: linear-gradient(to right top, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8); */
     /* background-image: linear-gradient(to right top, #23e7b3, #23ebb3, #24efb3, #26f2b3, #28f6b3, #28f7b2, #28f8b1, #28f9b0, #25f8ae, #22f7ac, #1ff5aa, #1cf4a8); */
     /* background-image: linear-gradient(to right top, #649fc6, #62a3ca, #61a8cd, #5facd0, #5eb1d3, #5fb3d3, #60b6d3, #61b8d3, #64b9d0, #68bace, #6bbacb, #6fbbc9); */
+}
+
+li a.nuxt-link-exact-active {
+    /* color: rgba(200, 00, 255, 0.9); */
+    background: rgba(250, 4, 250, 0.7);
 }
 </style>

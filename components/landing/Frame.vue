@@ -1,5 +1,5 @@
 <template>
-    <div class="grid md:grid-cols-6 p-5 mt-4 font-sans">
+    <div class="grid md:grid-cols-6 p-5 mt-4 font-sans bg-white">
         <!-- begin task list -->
         <div class="md:col-span-2 bg-white p-4 rounded-lg m-4">
             <!-- task container -->
