@@ -18,7 +18,7 @@
                     Sam Kihika
                 </a> 
             </span>
-            <span class="divide-x divide-black divide-dotted pl-2 pr-1">
+            <span class="pl-2 pr-1">
                 <a 
                     href="https://twitter.com/KihikaSamuel"
                     target="_blank" 
@@ -27,6 +27,16 @@
                     "
                 >
                     <font-awesome-icon :icon="['fab', 'twitter']"/>
+                </a>
+                <a 
+                    href="https://twitter.com/KihikaSamuel"
+                    target="_blank" 
+                    class="
+                        text-blue-400 hover:text-blue-700
+                        pl-2
+                    "
+                >
+                    <font-awesome-icon :icon="['fab', 'linkedin']"/>
                 </a>
             </span>
         </div>

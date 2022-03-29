@@ -1,8 +1,14 @@
 <template>
-    <div class="w-full grid md:grid-cols-6 p-0 rounded" v-if="isAuthenticated">        
+
+    <div 
+        class="grid md:grid-cols-6 p-0 rounded w-full" 
+        v-if="isAuthenticated"
+    >        
         <landing-sidebar/>
         <landing-main :loggedinuser="user" />
+
     </div>
+    
 </template>
 
 <script>

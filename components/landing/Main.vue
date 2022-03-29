@@ -119,30 +119,21 @@
 
     </div>
         <!-- BEGIN fetched content based on links -->
-        <landing-frame :date="currentDate"></landing-frame>
+        <landing-frame 
+            :date="currentDate"
+            :tasks="tasks"
+            :loading="loading"
+        >
+        </landing-frame>
         <!-- END fetched content based on links -->
+
         <!-- BEGIN Modal -->
         <landing-addtaskmodal
             v-show="isModalVisible"
             @close="closeModal"
         />
-        <!-- <landing-addtaskmodal
-            v-show="isModalVisible"
-            @close="closeModal"
-        />
-        <landing-addtaskmodal
-            v-show="isModalVisible"
-            @close="closeModal"
-        />
-        <landing-addtaskmodal
-            v-show="isModalVisible"
-            @close="closeModal"
-        />
-        <landing-addtaskmodal
-            v-show="isModalVisible"
-            @close="closeModal"
-        /> -->
         <!-- END Modal -->
+
   </section>
 </template>
 <script>
@@ -152,7 +143,9 @@ export default {
     data() {
         return {
             currentDate: new Date().toDateString(),
-            isModalVisible: true,
+            isModalVisible: false,
+            tasks: null,
+            loading: false
         }
     },
     methods: {
@@ -161,7 +154,27 @@ export default {
         },
         closeModal() {
             this.isModalVisible = false
+        },
+
+        async getTasks()
+        {
+            this.loading = true;
+
+            await this.$axios.get('http://localhost:3000/api/tasks/all')
+            .then((response) => {
+                this.tasks = response.data;
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+            .finally(() => {
+                this.loading = false;
+            })
         }
+    },
+    mounted() {
+        this.getTasks();
     }
 }
 </script>

@@ -32,7 +32,7 @@
                     </li>
                     <li class="pr-10 xs:pr-2 text-black">
                         <nuxt-link 
-                            to="/" 
+                            to="#/" 
                             class="
                                 px-2 py-3
                                 hover:bg-blue-500
@@ -47,8 +47,7 @@
                             to="/auth/login" 
                             class="
                                 px-2 py-3
-                                border-2 border-blue-300
-                                hover:border-blue-600
+                                hover:border-2 hover:border-blue-600
                                 rounded
                             "
                         >
@@ -59,8 +58,9 @@
                         <nuxt-link 
                             to="/auth/register"
                             class="
-                                px-2 py-3 bg-blue-500
-                                border-2 border-blue-300
+                                px-2 py-3 bg-pink-500
+                                border-2 border-pink-300
+                                hover:border-blue-600
                                 hover:border-blue-600
                                 rounded
                             "
@@ -89,6 +89,8 @@ nav {
 
 li a.nuxt-link-exact-active {
     /* color: rgba(200, 00, 255, 0.9); */
-    background: rgba(250, 4, 250, 0.7);
+    background: rgba(22, 99, 224, 0.7);
+    color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(22, 99, 224, 0.7);
 }
 </style>
