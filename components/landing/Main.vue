@@ -144,7 +144,7 @@ export default {
         return {
             currentDate: new Date().toDateString(),
             isModalVisible: false,
-            tasks: null,
+            tasks: [],
             loading: false
         }
     },

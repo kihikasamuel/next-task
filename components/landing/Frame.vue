@@ -1,7 +1,7 @@
 <template>
     <div class="grid md:grid-cols-6 p-5 mt-4 font-sans bg-white main-col">
         <!-- begin task list -->
-        <div v-if="tasks !== null" class="md:col-span-2 bg-white p-4 rounded-lg m-4">
+        <div v-if="tasks.length > 0" class="md:col-span-2 bg-white p-4 rounded-lg m-4">
             <!-- task container -->
             <div class="flex flex-col" v-for="task in tasks" :key="task">
                 <!-- task label -->
@@ -29,7 +29,7 @@
                     </span>
                     <span class="text-gray-300">
                         <font-awesome-icon :icon="['fas', 'calendar']"/>
-                        {{dated}}
+                        {{date}}
                     </span>
                 </div>
            </div>
