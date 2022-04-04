@@ -80,7 +80,7 @@ function createTasksTable() {
         scheduled_on TIMESTAMP,
         repeats INT NOT NULL,
         is_reminder VARCHAR(20) NOT NULL,
-        status VARCHAR(20) NOT NULL,
+        status VARCHAR(20) NOT NULL DEFAULT 'PENDING',
         assign_to VARCHAR(255) NOT NULL,
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

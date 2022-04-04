@@ -1,8 +1,10 @@
 <template>
     <section class="md:col-span-1 bg-white-500 z-20 mt-0 p-4 rounded">
         <div class="mb-7 p-4 sticky top-0">
-            <font-awesome-icon :icon="['fas', 'check-circle']" />
-            <strong class="md">NexTask</strong>
+            <Nuxt-Link to="/">
+                <font-awesome-icon :icon="['fas', 'check-circle']" />
+                <strong class="md">NexTask</strong>
+            </Nuxt-Link>
         </div>
         <div class="flex flex-col sm:col-span-4 content-center w-full md:sticky md:top-20">
 

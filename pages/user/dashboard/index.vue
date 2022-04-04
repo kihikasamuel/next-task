@@ -5,7 +5,7 @@
         v-if="isAuthenticated"
     >        
         <landing-sidebar/>
-        <landing-main :loggedinuser="user" />
+        <landing-main :loggedinuser="loggedInUser" />
 
     </div>
     
@@ -17,7 +17,7 @@ export default {
     middleware: 'auth',
     data() {
         return {
-            user: this.$auth.$state.user,
+            // user: this.$auth.$state.user,
         }
     },
     computed: {

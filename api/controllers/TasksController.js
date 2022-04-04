@@ -6,8 +6,8 @@ module.exports.addTask = [
     validator.body('label', 'Choose a label for your task'),
     validator.body('title', 'Name your task').isLength({min:3}),
     validator.body('notes', 'Add some  notes about your task'),
-    validator.body('repeats', 'Remind me every...').isNumeric(),
-    validator.body('isreminder', 'Send you a reminder?').isLength({min:2}),
+    validator.body('repeats', 'Remind me every...').isLength({min:1}),
+    validator.body('isreminder', 'Send you a reminder?').isLength({min:1}),
     validator.body('assignto').custom((value)=>{
         return new Promise((resolve, reject)=>{
             conn.query('SELECT fullname FROM users_tbl', (err, results, fields)=>{
@@ -36,7 +36,7 @@ module.exports.addTask = [
         task.scheduled_on = req.body.scheduledon;
         task.repeats = req.body.repeats;
         task.is_reminder = req.body.isreminder;
-        task.status = req.body.status;
+        task.status = 'Pending';
         task.assign_to = req.body.assignto;
         task.company_id = req.body.company_id;
 
