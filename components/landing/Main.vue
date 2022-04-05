@@ -116,7 +116,6 @@
         <!-- END row 3 -->
         <landing-frame 
             :date="currentDate"
-            :tasks="tasks"
             :loading="loading"
         />
     </div>
@@ -143,16 +142,14 @@ export default {
         return {
             currentDate: new Date().toDateString(),
             isModalVisible: false,
-            // tasks: [],
             loading: false,
         }
     },
     computed: {
-        tasks() 
-        {
-            return this.$store.state.tasks.tasks;
-            // this.$store.state.tasks.loading;
-        }
+        // tasks() 
+        // {
+        //     return this.$store.state.tasks.tasks;
+        // }
     },
     methods: {
         showModal() {
@@ -161,33 +158,7 @@ export default {
         closeModal() {
             this.isModalVisible = false
         },
-        getData() 
-        {
-            this.$store.dispatch("tasks/getTasks");
-        }
-        // async getTasks()
-        // {
-        //     this.loading = true;
-
-        //     await this.$axios.get('http://localhost:3000/api/tasks/all')
-        //     .then((response) => {
-        //         this.tasks = response.data;
-        //         console.log(alltasks);
-        //     })
-        //     .catch((error) => {
-        //         console.log(error)
-        //     })
-        //     .finally(() => {
-        //         this.loading = true;
-        //     })
-        // }
         
     },
-    mounted() {
-        this.getData()
-    },
-    updated() {
-        
-    }
 }
 </script>

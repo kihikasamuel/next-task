@@ -34,7 +34,7 @@
                             <!-- <div> -->
                             <!-- <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12"></div> -->
                                 <div class="mt-3 p-4">
-                                    <h1 class="text-center">Create Task</h1>
+                                    <h1 class="text-center">Create Task {{user.companyid}}</h1>
                                     <div class="mt-2 text-black-500">
                                             <label for="title" class="block">
                                                 <span class="text-black">Label</span>
@@ -158,7 +158,8 @@ export default {
                 scheduledon: null,
                 repeats: '',
                 isreminder: '',
-                assignto: this.user.username
+                assignto: this.user.username,
+                company_id: this.user.companyid
             },
             loading: false,
         }

@@ -45,17 +45,27 @@
 <script>
 export default {
     props: ['date', 'loading'],
-    data() {
+    data() 
+    {
         return {
             dated: new Date().toDateString(),
         }
     },
-
+    watch: {
+        tasks(value) {
+            // this.$store.dispatch("tasks/getTasks");
+            this.$store.state.tasks.tasks;
+        }
+    },
     computed: {
         tasks() 
         {
             return this.$store.state.tasks.tasks;
         }
+    },
+    mounted() 
+    {
+        this.$store.dispatch("tasks/getTasks");
     }
     
 }

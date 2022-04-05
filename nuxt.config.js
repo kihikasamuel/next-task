@@ -99,6 +99,13 @@ export default {
         baseURL: "http://localhost:3000"
     },
 
+    watchers: {
+        webpack: {
+            aggregateTimeout: 300,
+            poll: 1000
+        }
+    }
+
     // one day in september a movie
 
 }
