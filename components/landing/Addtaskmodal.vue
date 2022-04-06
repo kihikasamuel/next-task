@@ -167,17 +167,16 @@ export default {
     watch: {
 
     },
+    computed:{},
     methods: {
 
         close() {
-        this.$emit("close");
+            this.$emit("close");
         },
 
         async addTask() 
         {
-            this.loading = true;
-
-            await this.$axios.post('http://localhost:3000/api/tasks/add', this.form)
+            this.$store.dispatch("tasks/addTask", this.form)
             .then((response) => {
                 this.$toast.success(`Task saved successfully!`, {
                     action: {
@@ -192,7 +191,7 @@ export default {
                 })
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
                 this.$toast.error(`Failed to save!`, {
                     action: {
                         text: 'X',
@@ -207,6 +206,16 @@ export default {
             })
             .finally(() => {
                 this.loading = false
+                this.form = {
+                    label: '',
+                    title: null,
+                    notes: null,
+                    scheduledon: null,
+                    repeats: '',
+                    isreminder: '',
+                    assignto: this.user.username,
+                    company_id: this.user.companyid
+                };
             })
         }
     },

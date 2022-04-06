@@ -3,7 +3,7 @@
         <!-- begin task list -->
         <div v-if="tasks.length > 0" class="md:col-span-2 bg-white p-4 rounded-lg">
             <!-- task container -->
-            <div class="flex flex-col border-2 border-gray-100 p-4 m-4 shadow-xl rounded" v-for="task in tasks" :key="task.id">
+            <div class="flex flex-col border-2 border-gray-100 p-4 m-4 shadow-xl shadow-orange-800 rounded" v-for="task in tasks" :key="task.id">
                 <!-- task label -->
                 <div class="flex md:flex-row w-full place-content-between cursor-pointer">
                     <span class="px-2 py-1 bg-yellow-500 text-xs text-white rounded-md">{{task.label}}</span>
