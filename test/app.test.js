@@ -97,7 +97,7 @@ describe('POST /api/tasks/add', () => {
             company_id : '6x583iw8une',
         });
 
-        // make sure it was adde correctly
+        // make sure it was added correctly
         expect(newTask.body).toEqual({"message": "Task saved successfully!"})
         expect(newTask.statusCode).toBe(201);
 
