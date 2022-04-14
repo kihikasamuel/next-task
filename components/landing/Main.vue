@@ -79,34 +79,34 @@
             <div class="md:col-span-4">
                 <Nav class="md:px-4">
                     <!-- flex md:flex-row -->
-                    <Nuxt-Link to="#" class="active p-2 text-gray-500 hover:bg-gray-100 hover:text-blue-500 rounded-md">
+                    <Nuxt-Link to="#" class="active p-4 text-gray-500 hover:bg-gray-100 hover:text-blue-500 rounded-md">
                         Upcoming
                     </Nuxt-Link>
-                    <Nuxt-Link to="#" class="p-2 text-gray-500 hover:bg-gray-100 hover:text-blue-500 rounded-md">
+                    <Nuxt-Link to="#" class="p-4 text-gray-500 hover:bg-gray-100 hover:text-blue-500 rounded-md">
                         In Progress
                     </Nuxt-Link>
-                    <Nuxt-Link to="#" class="p-2 text-gray-500 hover:bg-gray-100 hover:text-blue-500 rounded-md">
+                    <Nuxt-Link to="#" class="p-4 text-gray-500 hover:bg-gray-100 hover:text-blue-500 rounded-md">
                         Completed
                     </Nuxt-Link>
-                    <Nuxt-Link to="#" class="p-2 text-gray-500 hover:bg-gray-100 hover:text-blue-500 rounded-md">
+                    <Nuxt-Link to="#" class="p-4 text-gray-500 hover:bg-gray-100 hover:text-blue-500 rounded-md">
                         Cancelled
                     </Nuxt-Link>
-                    <Nuxt-Link to="#" class="p-2 text-gray-500 hover:bg-gray-100 hover:text-blue-500 rounded-md">
+                    <Nuxt-Link to="#" class="p-4 text-gray-500 hover:bg-gray-100 hover:text-blue-500 rounded-md">
                         Projects
                     </Nuxt-Link>
-                    <Nuxt-Link to="#" class="p-2 text-gray-500 hover:bg-gray-100 hover:text-blue-500 rounded-md">
+                    <Nuxt-Link to="#" class="p-4 text-gray-500 hover:bg-gray-100 hover:text-blue-500 rounded-md">
                         Calendar
                     </Nuxt-Link>
                 </Nav>
             </div>
 
             <div class="md:col-span-2 text-white">
-                <div class="flex md:flex-row md:w-3/4 md:float-right content-center">
-                    <button type="button" class="text-black px-3 border-2 border-black-200 rounded-md bg-gray-100 mr-2">
+                <div class="flex md:flex-row md:w-3/4 justify-end content-center">
+                    <button type="button" class="text-black px-3 py-1 border-2 border-black-200 rounded-md bg-gray-100 mr-2">
                         <font-awesome-icon :icon="['fas', 'share-alt']" />
                         Share
                     </button>
-                    <button type="button" class="md:px-6 sm:px-2 py-1 rounded-md bg-blue-700" @click="showModal">
+                    <button type="button" class="px-3 py-1 rounded bg-blue-700" @click="showModal">
                         <font-awesome-icon :icon="['fas', 'plus']" />
                         Add New
                     </button>

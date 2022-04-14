@@ -1,24 +1,88 @@
 <template>
-    <nav class="grid grid-cols-12 w-full p-5 rounded sticky z-100 top-0">
-            <div class="col-span-3 xs:col-span-12 md:ml-20 pl-4 text-center">
+    <nav class="grid grid-cols-12 sticky z-100 top-0 pt-10">
+        <div class="col-span-12 flex flex-row place-content-between md:pl-20 md:ml-10 sm:pl-4">
+            <div class="col-span-3">
+                <nuxt-link
+                    to="/"
+                    class="
+                        text-black font-narrow font-bold text-3xl
+                        hover:text-indigo-700 mt-10
+                    "
+                >
+                    <font-awesome-icon :icon="['fas', 'check-circle']" />
+                    <strong class="md">NexTask</strong>
+                    
+                </nuxt-link>
+            </div>
+            <ul class="col-span-9 flex md:flex-row sm:flex-col pr-4">
+                <li class="pr-6 sm:pr-2 md:mr-10 text-black">
+                    <nuxt-link 
+                        to="/" 
+                        class="
+                            px-2 py-3
+                            hover:border-blue-500
+                            border-b-2
+                        "
+                    >
+                    Home
+                    </nuxt-link>
+                </li>
+                <li class="pr-6 sm:pr-2 md:mr-10 text-black">
+                    <nuxt-link 
+                        to="#/" 
+                        class="
+                            px-2 py-3
+                            border-b-2 hover:border-blue-500
+                        "
+                    >
+                    Pricing
+                    </nuxt-link>
+                </li>
+                <li class="pr-6 sm:pr-2 md:mr-10 text-black">
+                    <nuxt-link 
+                        to="/auth/login" 
+                        class="
+                            px-2 py-3
+                            hover:border-2 hover:border-blue-600
+                        "
+                    >
+                    Login
+                    </nuxt-link>
+                </li>
+                <li class="pr-6 sm:pr-2 md:mr-10 text-white hover:text-gray-100">
+                    <nuxt-link 
+                        to="/auth/register"
+                        id="register"
+                        class="
+                            px-2 py-3 bg-blue-300
+                            border-0 border-blue-300
+                            hover:border-blue-600
+                            rounded
+                        "
+                    >
+                    Register
+                    </nuxt-link>
+                </li>
+            </ul>
+        </div>
+            <!-- <div class="col-span-3 sm:col-span-12 md:ml-20 pl-4 text-center">
                 <div class="flex flex-row col-span-12 float-left">
                     <nuxt-link
                         to="/"
                         class="
                             text-black font-narrow font-bold text-3xl
-                            hover:text-indigo-700
+                            hover:text-indigo-700 mt-10
                         "
                     >
                         <font-awesome-icon :icon="['fas', 'check-circle']" />
                         <strong class="md">NexTask</strong>
-                        <!-- DIARY<font-awesome-icon :icon="['fas','calendar-check']"/> -->
                         
                     </nuxt-link>
                 </div>
-            </div>
-            <div class="col-span-9 xs:col-span-12 ">
-                <ul class="flex lg:flex-row md:flex-row xs:flex-row float-right">
-                    <li class="pr-4 xs:pr-2 text-black">
+            </div> -->
+            <!-- <div class="col-span-9 sm:col-span-12 justify-end">
+                <ul class="flex md:flex-row xs:flex-row float-right">
+                    <li class="pr-4 sm:pr-2 text-black">
                         <nuxt-link 
                             to="/" 
                             class="
@@ -30,20 +94,18 @@
                         Home
                         </nuxt-link>
                     </li>
-                    <li class="pr-10 xs:pr-2 text-black">
+                    <li class="pr-4 sm:pr-2 text-black">
                         <nuxt-link 
                             to="#/" 
                             class="
                                 px-2 py-3
-                                border-b-2
-                                hover:border-blue-500
-                                
+                                border-b-2 hover:border-blue-500
                             "
                         >
                         Pricing
                         </nuxt-link>
                     </li>
-                    <li class="pr-10 xs:pr-2 text-black">
+                    <li class="pr-4 sm:pr-2 text-black">
                         <nuxt-link 
                             to="/auth/login" 
                             class="
@@ -55,7 +117,7 @@
                         Login
                         </nuxt-link>
                     </li>
-                    <li class="pr-10 xs:pr-2 text-white hover:text-gray-100">
+                    <li class="pr-4 sm:pr-2 text-white hover:text-gray-100">
                         <nuxt-link 
                             to="/auth/register"
                             :class="{'bg-blue-500':active}"
@@ -70,7 +132,7 @@
                         </nuxt-link>
                     </li>
                 </ul>
-            </div>
+            </div> -->
     </nav>
 </template>
 
@@ -93,6 +155,10 @@ li a.nuxt-link-exact-active {
     /* background: rgba(22, 99, 224, 0.7); */
     /* color: rgba(255, 255, 255, 1); */
     border-bottom: 2px solid rgba(22, 99, 224, 0.7);
-    border-radius: 0;
+}
+
+#register.nuxt-link-exact-active {
+    background-color: rgba(22, 99, 224, 0.7);
+    border: none !important;
 }
 </style>

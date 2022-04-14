@@ -1,12 +1,12 @@
 <template>
-    <div class="grid md:grid-cols-6 p-5 mt-4 font-sans bg-white main-col">
+    <div class="p-5 mt-4 font-sans bg-white main-col">
         <!-- begin task list -->
-        <div v-if="tasks.length > 0" class="md:col-span-2 bg-white p-4 rounded-lg">
+        <div v-if="tasks.length > 0" class="md:grid md:grid-cols-6 sm:flex sm:flex-col bg-white p-4 rounded-lg">
             <!-- task container -->
-            <div class="flex flex-col border-2 border-gray-100 p-4 m-4 shadow-xl shadow-orange-800 rounded" v-for="task in tasks" :key="task.id">
+            <div class="md:col-span-2 border-2 border-gray-100 p-4 m-4 shadow-xl shadow-orange-800 rounded" v-for="task in tasks" :key="task.id">
                 <!-- task label -->
-                <div class="flex md:flex-row w-full place-content-between cursor-pointer">
-                    <span class="px-2 py-1 bg-yellow-500 text-xs text-white rounded-md">{{task.label}}</span>
+                <div class="flex flex-row place-content-between cursor-pointer">
+                    <span :class="{'bg-yellow-500':task.status=='Pending', 'bg-green-500':task.status==='Completed'}" class="px-2 py-1 text-xs text-white rounded-md">{{task.label}}</span>
                     <span class="cursor-pointer"><font-awesome-icon :icon="['fas','ellipsis-h']"/></span>
                 </div>
                 <!-- task details -->
@@ -15,15 +15,18 @@
                     <p class="text-sm text-gray-400">{{task.notes}}</p>
                 </div>
                 <!-- task assigned to -->
-                <div class="flex md:flex-row md:mt-4 place-content-between">
+                <div class="flex flex-row md:mt-4 place-content-between">
                     <span class="flex flex-row">
-                        <i class="border-2 border-gray-200 rounded-full relative right-0">
+                        <i class="border-2 border-gray-200 rounded-full">
                             <img src="~assets/imgs/avatar.png" class="w-8 h-8" alt="">
                         </i>
                     </span>
-                    <span class="text-gray-300">
-                        <font-awesome-icon :icon="['fas', 'calendar']"/>
-                        {{task.scheduledon}}
+                    <span class="text-gray-600 text-xs font-bold flex flex-row">
+                        <font-awesome-icon :icon="['fas', 'calendar']" class="pr-1"/>
+                        <span>
+                            {{new Date(new Date(task.scheduled_on).toDateString()).toLocaleString('en-us', {weekday:'short'})}}
+                            {{new Date(task.scheduled_on).getDate()}} {{new Intl.DateTimeFormat('en-us', {month:'short'}).format(new Date(task.scheduled_on))}}
+                        </span>
                     </span>
                 </div>
            </div>

@@ -34,7 +34,7 @@
                             <!-- <div> -->
                             <!-- <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12"></div> -->
                                 <div class="mt-3 p-4">
-                                    <h1 class="text-center">Create Task {{user.companyid}}</h1>
+                                    <h1 class="text-center">Create Task</h1>
                                     <div class="mt-2 text-black-500">
                                             <label for="title" class="block">
                                                 <span class="text-black">Label</span>
@@ -94,6 +94,8 @@
                                                         focus:outline-none
                                                     "
                                                     v-model="form.scheduledon"
+                                                    min="2022-04-11"
+                                                    id="scheduledon"
                                                 >
                                             </label>
                                             <label for="repeat" class="block">
@@ -219,9 +221,17 @@ export default {
             })
         }
     },
+
+    mounted() 
+    {
+        // console.log(new Date().toISOString().split('T')[0])
+        document.getElementById('scheduledon').setAttribute('min', new Date().toISOString().split('T')[0]);
+    },
+
+
     updated() 
     {
-        console.log(this.user);
+        
     }
 };
 </script>

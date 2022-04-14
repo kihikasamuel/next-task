@@ -1,6 +1,6 @@
 <template>
 
-    <div class="main">
+    <div class="main scroll-smooth">
         <header-navbar/>
         <parts-banner/>
         <parts-brands/>
