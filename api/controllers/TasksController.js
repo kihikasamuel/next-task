@@ -52,7 +52,7 @@ module.exports.addTask = [
 
 // list all tasks
 module.exports.list = function(req, res) {
-    conn.query('SELECT * FROM tasks_tbl', (error, results, fields) => {
+    conn.query('SELECT * FROM tasks_tbl ORDER BY scheduled_on ASC', (error, results, fields) => {
         if(error) {
             return res.status(422).json({message:error})
         }
