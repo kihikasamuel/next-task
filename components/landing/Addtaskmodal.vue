@@ -193,7 +193,6 @@ export default {
                 })
             })
             .catch((err) => {
-                // console.log(err);
                 this.$toast.error(`Failed to save!`, {
                     action: {
                         text: 'X',

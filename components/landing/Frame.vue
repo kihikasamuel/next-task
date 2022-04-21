@@ -10,33 +10,27 @@
                 <!-- task label -->
                 <div class="flex flex-row place-content-between cursor-pointer">
                     <span :class="{'bg-yellow-500':task.status=='Pending', 'bg-green-500':task.status==='Completed'}" class="px-2 py-1 text-xs text-white rounded-md">{{task.label}}</span>
-                    <div 
-                        class="dropdown"
+                    <span 
+                        class="dropstart relative"
                     >
-                        <span
+                        <a
+                            href="#"
                             class="
-                                dropdown-toggle
                                 text-black
                                 font-medium
-                                text-xs
-                                leading-tight
                                 uppercase
                                 transition
                                 duration-150
                                 ease-in-out
-                                flex
-                                items-center
-                                whitespace-nowrap
                                 cursor-pointer
                             "
                             type="button"
                             :id="`dropdownMenuButton1-${task.id}`"
                             data-bs-toggle="dropdown"
-                            aria-expanded="false"
                             @click="showActions"
                         >
                             <font-awesome-icon :icon="['fas','ellipsis-h']"/>
-                        </span>
+                        </a>
                         <!-- actions on tasks -->
                         <ul
                             class="
@@ -44,10 +38,10 @@
                                 min-w-max
                                 absolute
                                 hidden
-                                bg-blue
+                                bg-white
                                 text-base
                                 z-50
-                                float-left
+                                float-right
                                 py-2
                                 list-none
                                 text-left
@@ -72,18 +66,39 @@
                                     block
                                     w-full
                                     whitespace-nowrap
-                                    bg-transparent
                                     text-gray-700
                                     hover:bg-gray-100
                                     "
                                     href="#"
+                                    @click="modifyTask"
                                     >
-                                        Action
+                                        Edit
+                                    </a>
+                            </li>
+                            <li>
+                                <a
+                                    class="
+                                    dropdown-item
+                                    text-sm
+                                    py-2
+                                    px-4
+                                    font-normal
+                                    block
+                                    w-full
+                                    whitespace-nowrap
+                                    
+                                    text-gray-700
+                                    hover:bg-gray-100
+                                    "
+                                    href="#"
+                                    @click="deleteTask"
+                                    >
+                                        Delete
                                     </a>
                             </li>
                         </ul>
                         <!-- actions on tasks -->
-                    </div>
+                    </span>
                 </div>
                 
                 <!-- task details -->
@@ -162,10 +177,27 @@ export default {
     methods: {
         showActions(e)
         {
-            let target_id = e.target.parentNode.id;
-            let el = document.querySelector(`[aria-labelledby="${target_id}"]`);
-            // console.log(el);
-            el.classList.toggle('hidden');
+            const target_id = e.target.parentNode.id;
+            const el = document.querySelector(`[aria-labelledby="${target_id}"]`);
+            // console.log(target_id);
+            if(el.classList !== null || el.classList !== undefined)
+            {
+                el.classList.toggle('hidden');
+            }
+            else
+            {
+                // do something else
+            }
+        },
+
+        modifyTask()
+        {
+            // 
+        },
+
+        deleteTask()
+        {
+            this.$store.commit('')
         }
     }
     
