@@ -5,39 +5,49 @@
         <div v-if="tasks.length > 0" class="md:grid md:grid-cols-6 sm:flex sm:flex-col bg-white p-4 rounded-lg">
             
             <!-- task container -->
-            <div class="md:col-span-2 border-2 border-gray-100 p-4 m-4 shadow-xl shadow-orange-800 rounded" v-for="task in tasks" :key="task.id">
+            <div @dblclick="modifyTask(task.id)" class="md:col-span-2 border-2 border-gray-100 p-4 m-4 shadow-xl shadow-orange-800 rounded" v-for="task in tasks" :key="task.id">
                
                 <!-- task label -->
                 <div class="flex flex-row place-content-between cursor-pointer">
-                    <span :class="{'bg-yellow-500':task.status=='Pending', 'bg-green-500':task.status==='Completed'}" class="px-2 py-1 text-xs text-white rounded-md">{{task.label}}</span>
                     <span 
-                        class="dropstart relative"
+                        :class="{
+                            'bg-yellow-500':task.status=='Pending', 
+                            'bg-green-500':task.status==='Completed'
+                        }" 
+                        class="px-2 py-1 text-xs text-white rounded-md"
                     >
-                        <a
-                            href="#"
-                            class="
-                                text-black
-                                font-medium
-                                uppercase
-                                transition
-                                duration-150
-                                ease-in-out
-                                cursor-pointer
-                            "
-                            type="button"
+                        {{task.label}}
+                    </span>
+                    <div class="dropstart">
+                        <!-- <a 
+                            class="px-2" 
+                            type="button" 
                             :id="`dropdownMenuButton1-${task.id}`"
-                            data-bs-toggle="dropdown"
+                        >
+                            <font-awesome-icon :icon="['fas', 'ellipsis-h']" @click="showActions"/>
+                        </a> -->
+                        <a
+                            class="
+                                text-sm
+                                font-normal
+                                block
+                                w-full
+                                whitespace-nowrap
+                            "
+                            :id="`dropdownMenuButton1-${task.id}`"
+                            type="button"
+                            href="#"
                             @click="showActions"
                         >
-                            <font-awesome-icon :icon="['fas','ellipsis-h']"/>
+                            <font-awesome-icon class="block" @click.prevent="" :icon="['fas', 'ellipsis-h']"/>
                         </a>
                         <!-- actions on tasks -->
                         <ul
                             class="
                                 dropdown-menu
                                 min-w-max
-                                absolute
                                 hidden
+                                absolute
                                 bg-white
                                 text-base
                                 z-50
@@ -48,7 +58,6 @@
                                 rounded-lg
                                 shadow-lg
                                 mt-1
-                                hidden
                                 m-0
                                 bg-clip-padding
                                 border-none
@@ -58,47 +67,47 @@
                             <li>
                                 <a
                                     class="
-                                    dropdown-item
-                                    text-sm
-                                    py-2
-                                    px-4
-                                    font-normal
-                                    block
-                                    w-full
-                                    whitespace-nowrap
-                                    text-gray-700
-                                    hover:bg-gray-100
+                                        dropdown-item
+                                        text-sm
+                                        py-2
+                                        px-4
+                                        font-normal
+                                        block
+                                        w-full
+                                        whitespace-nowrap
+                                        text-gray-700
+                                        hover:bg-gray-100
                                     "
                                     href="#"
-                                    @click="modifyTask"
-                                    >
-                                        Edit
-                                    </a>
+                                    @click.prevent="modifyTask(task.id)"
+                                >
+                                    Edit
+                                </a>
                             </li>
                             <li>
                                 <a
                                     class="
-                                    dropdown-item
-                                    text-sm
-                                    py-2
-                                    px-4
-                                    font-normal
-                                    block
-                                    w-full
-                                    whitespace-nowrap
-                                    
-                                    text-gray-700
-                                    hover:bg-gray-100
+                                        dropdown-item
+                                        text-sm
+                                        py-2
+                                        px-4
+                                        font-normal
+                                        block
+                                        w-full
+                                        whitespace-nowrap
+                                        
+                                        text-gray-700
+                                        hover:bg-gray-100
                                     "
                                     href="#"
-                                    @click="deleteTask"
-                                    >
-                                        Delete
-                                    </a>
+                                    @click.prevent="deleteTask(task.id)"
+                                >
+                                    Delete
+                                </a>
                             </li>
                         </ul>
                         <!-- actions on tasks -->
-                    </span>
+                    </div>
                 </div>
                 
                 <!-- task details -->
@@ -156,14 +165,14 @@ export default {
     watch: {
         tasks(value) {
             // this.$store.dispatch("tasks/getTasks");
-            // this.$store.state.tasks.tasks;
+            this.$store.state.tasks.tasks;
         }
     },
     computed: {
         tasks() 
         {
-            // return this.$store.state.tasks.tasks;
-            return this.$store.getters['tasks/getTasks'];
+            return this.$store.state.tasks.tasks;
+            // return this.$store.getters['tasks/getTasks'];
         }
     },
     beforeMount() 
@@ -173,31 +182,67 @@ export default {
     updated() 
     {
         // this.$store.dispatch("tasks/getTasks");
+        this.$store.getters['tasks/getTasks'];
     },
     methods: {
         showActions(e)
         {
             const target_id = e.target.parentNode.id;
             const el = document.querySelector(`[aria-labelledby="${target_id}"]`);
-            // console.log(target_id);
-            if(el.classList !== null || el.classList !== undefined)
-            {
-                el.classList.toggle('hidden');
+            // console.log(el.tagName);
+            try {
+                if(el.classList !== null)
+                {
+                    el.classList.toggle('hidden');
+                }
+            } catch (error) {
+                console.log(error);
             }
-            else
-            {
-                // do something else
-            }
+            
         },
 
         modifyTask()
         {
-            // 
+            let selected = arguments[0]
         },
 
-        deleteTask()
+        async deleteTask()
         {
-            this.$store.commit('')
+            let task_id = arguments[0]
+            this.$toast.show('Loading..', {
+                duration: 500,
+            });
+            await this.$store.dispatch("tasks/removeTask", task_id)
+            .then((result) => {
+                this.$toast.success('Deleted Successfuly', {
+                    iconPack: ['fontawesome'],
+                    Icon: 'check',
+                    action: {
+                        text: 'X',
+                        onClick: (e, toastObj) => {
+                            toastObj.goAway(0);
+                        }
+                    },
+                    position: 'top-center',
+                    duration: 7000,
+                    singleton: true,
+                });
+            })
+            .catch((err) => {
+                this.$toast.error('Could not delete. Try again later!', {
+                    iconPack: ['fontawesome'],
+                    Icon: 'check',
+                    action: {
+                        text: 'X',
+                        onClick: (e, toastObj) => {
+                            toastObj.goAway(0);
+                        }
+                    },
+                    position: 'top-center',
+                    duration: 7000,
+                    singleton: true,
+                })
+            })
         }
     }
     

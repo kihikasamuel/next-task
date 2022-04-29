@@ -113,8 +113,6 @@ export default {
   methods: {
     async login() {
       this.loading = true;
-      // try {
-          // const response = 
           await this.$auth.loginWith("local", {
             data: {
               username: this.username,
@@ -131,6 +129,7 @@ export default {
               },
               position: "top-center",
               duration: 7000,
+              singleton: true,
             });
             this.$router.replace("/user/dashboard");
           })
@@ -143,13 +142,6 @@ export default {
           .finally(() => {
             this.loading = false;
           });
-      // }catch (error) {
-      //   // console.log(error)
-      //   if(error.response.data) {
-      //       this.errors = error.response.data.errors;
-      //       // console.log(this.errors);
-      //   }
-      // }
     },
   },
 };

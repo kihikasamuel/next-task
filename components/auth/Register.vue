@@ -212,7 +212,8 @@ export default {
                                 }
                             },
                             position: 'top-center',
-                            duration: 7000
+                            duration: 7000,
+                            singleton: true,
                         });
                         this.$router.push('/auth/login');
                     })

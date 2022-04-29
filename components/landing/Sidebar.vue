@@ -31,8 +31,8 @@
             </Nuxt-Link>
             
             <Nuxt-Link to="/user/dashboard" class="p-4 hover:bg-gray-100 hover:text-blue-500 rounded">
-                <font-awesome-icon :icon="['fas', 'calendar']" />
-                Calendar
+                <font-awesome-icon :icon="['fas', 'bell']" />
+                Notifications
             </Nuxt-Link>
             
             <Nuxt-Link to="/user/dashboard" class="p-4 hover:bg-gray-100 hover:text-blue-500 rounded">

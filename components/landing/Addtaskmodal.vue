@@ -23,7 +23,7 @@
                 >
                 <!-- transform transition-all
                         overflow-hidden shadow-xl rounded -->
-                    <form class="overflow-y-auto" @submit.prevent="addTask">
+                    <form class="overflow-auto scroll" @submit.prevent="addTask">
                         <div 
                             class="
                                 bg-white rounded pt-4 pb-4 px-4 
@@ -94,7 +94,7 @@
                                                         focus:outline-none
                                                     "
                                                     v-model="form.scheduledon"
-                                                    min="2022-04-11"
+                                                    min="date-time-local"
                                                     id="scheduledon"
                                                 >
                                             </label>
@@ -105,6 +105,7 @@
                                                         mt-2 mb-2 w-1/4
                                                         px-4 py-2
                                                         border-0 focus:outline-0
+                                                        w-full
                                                     "
                                                     v-model="form.repeats"
                                                     required
@@ -114,19 +115,23 @@
                                                     <option value="0">No</option>
                                                 </select>
                                                 <!-- <span class="text-black">Repeat</span> -->
+                                            </label>
+                                            <label for="select" class="block">
                                                 <select 
                                                     class="
-                                                        mt-2 mb-2 w-1/4
+                                                        mt-2 mb-2 w-full
                                                         px-4 py-2
                                                         border-0 focus:outline-0
                                                     "
                                                     v-model="form.isreminder"
+                                                    v-if="form.repeats == 1"
                                                 >
-                                                    <option value="" selected disabled>Repeat</option>
+                                                    <option value="" selected disabled>Repeat Frequency</option>
                                                     <option value="1">Daily</option>
                                                     <option value="7">Weekly</option>
+                                                    <option value="14">Every 2 Weeks</option>
+                                                    <option value="21">Every 3 Weeks</option>
                                                     <option value="28">Monthly</option>
-                                                    <!-- <option value="datetime-local">Date</option> -->
                                                 </select>
                                             </label>
                                     </div>
@@ -134,11 +139,11 @@
                             <!-- </div> -->
                         </div>
                         <div class="bg-white flex flex-row px-4 py-3 items-end justify-end">
-                            <button type="submit" :class="{loading: 'animate-pulse'}" class="inline-flex bg-blue-200 px-5 py-2 mr-3">
-                                <font-awesome-icon :class="{loading: 'animate-pulse'}" :icon="['fas', 'paper-plane']" />
-                            </button>
-                            <button type="button" @click="close" class="inline-flex justify-center bg-blue-200 px-5 py-2">
+                            <button type="button" @click="close" class="inline-flex justify-center bg-blue-200 px-5 py-2 mr-3">
                                 <font-awesome-icon :icon="['fas', 'times']" />
+                            </button>
+                            <button type="submit" :class="{loading: 'animate-pulse'}" class="inline-flex bg-blue-200 px-5 py-2">
+                                <font-awesome-icon :class="{loading: 'animate-pulse'}" :icon="['fas', 'paper-plane']" />
                             </button>
                         </div>
                     </form>
@@ -178,9 +183,10 @@ export default {
 
         async addTask() 
         {
-            this.$store.dispatch("tasks/addTask", this.form)
+            await this.$store.dispatch("tasks/addTask", this.form)
             .then((response) => {
                 this.$toast.success(`Task saved successfully!`, {
+                    // icon: 'check',
                     action: {
                         text: 'X',
                         onClick: (e, toastObj) => {
@@ -188,12 +194,13 @@ export default {
                         },
                     },
                     position: 'top-center',
-                    duration: 5000
-                    
+                    duration: 5000,
+                    singleton: true,                
                 })
             })
             .catch((err) => {
                 this.$toast.error(`Failed to save!`, {
+                    // icon: 'cancel',
                     action: {
                         text: 'X',
                         onClick: (e, toastObj) => {
@@ -201,8 +208,8 @@ export default {
                         },
                     },
                     position: 'top-center',
-                    duration: 5000
-                    
+                    duration: 5000,
+                    singleton: true,
                 })
             })
             .finally(() => {
@@ -224,7 +231,6 @@ export default {
     mounted() 
     {
         // console.log(new Date().toISOString().split('T')[0])
-        document.getElementById('scheduledon').setAttribute('min', new Date().toISOString().split('T')[0]);
     },
 
 

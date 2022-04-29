@@ -26,7 +26,7 @@ export const mutations = {
 
     removeTask(state, taskId) 
     {
-        state.tasks.filter((items) => items.id !== taskId);
+        state.tasks.filter((item) => item.id !== taskId);
     },
 
     setLoading(state, payload)
@@ -70,7 +70,7 @@ export const actions = {
     {
         context.commit('setLoading', true);
 
-        await this.$axios.delete(`http://localhost:3000/api/tasks/?id=${taskId}`).
+        await this.$axios.delete(`http://localhost:3000/api/tasks/${taskId}`).
         then((result) => {
             context.commit('removeTask', taskId);
         })
