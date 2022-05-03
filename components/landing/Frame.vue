@@ -79,7 +79,7 @@
                                         hover:bg-gray-100
                                     "
                                     href="#"
-                                    @click.prevent="modifyTask(task.id)"
+                                    @click.prevent="modifyTask(task)"
                                 >
                                     Edit
                                 </a>
@@ -150,23 +150,29 @@
         </div>
         <!-- while no task -->
 
+        <!-- BEGIN Modal -->
+        <landing-edittaskmodal
+            v-show="isEditModalVisible"
+            @close="closeEditModal"
+        />
+        <!-- END Modal -->
+
     </div>
 </template>
 
 <script>
 export default {
-    props: ['date', 'loading'],
+    props: ['loading'],
     data() 
     {
         return {
             dated: new Date().toDateString(),
+            isEditModalVisible: false,
+            selectedTask: null,
         }
     },
     watch: {
-        tasks(value) {
-            // this.$store.dispatch("tasks/getTasks");
-            this.$store.state.tasks.tasks;
-        }
+        
     },
     computed: {
         tasks() 
@@ -203,7 +209,13 @@ export default {
 
         modifyTask()
         {
-            let selected = arguments[0]
+            this.isEditModalVisible = true;
+            this.selectedTask = arguments[0]
+        },
+
+        closeEditModal() 
+        {
+            this.isEditModalVisible = false;
         },
 
         async deleteTask()
@@ -244,7 +256,7 @@ export default {
                 })
             })
         }
-    }
+    },
     
 }
 </script>

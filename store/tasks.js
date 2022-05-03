@@ -19,14 +19,22 @@ export const mutations = {
     {
         state.tasks = payload;
     },
-    addTask(state, task) 
+    updateTasks(state, task) 
     {
         state.tasks.push(task);
     },
 
-    removeTask(state, taskId) 
+    deleteTask(state, taskId) 
     {
-        state.tasks.filter((item) => item.id !== taskId);
+        let exists = [];
+        state.tasks = state.tasks.filter((task) => {
+            if(task.id !== taskId)
+            {
+                exists.push(task);
+            }
+            return exists;
+        });
+
     },
 
     setLoading(state, payload)
@@ -61,7 +69,7 @@ export const actions = {
 
         await this.$axios.post('http://localhost:3000/api/tasks/add', payload)
         .then((result) => {
-            context.commit('addTask', payload);
+            context.commit('updateTasks', result.data.newTask);
         })
     },
 
@@ -72,7 +80,7 @@ export const actions = {
 
         await this.$axios.delete(`http://localhost:3000/api/tasks/${taskId}`).
         then((result) => {
-            context.commit('removeTask', taskId);
+            context.commit('deleteTask', result.data.taskId);
         })
     }
 }

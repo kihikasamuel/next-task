@@ -114,8 +114,7 @@
             </div>
         </div>
         <!-- END row 3 -->
-        <landing-frame 
-            :date="currentDate"
+        <landing-frame
             :loading="loading"
         />
     </div>
@@ -131,6 +130,8 @@
     />
     <!-- END Modal -->
 
+    
+
   </section>
 </template>
 <script>
@@ -142,6 +143,7 @@ export default {
         return {
             currentDate: new Date().toDateString(),
             isModalVisible: false,
+            isEditModalVisible: false,
             loading: false,
         }
     },
@@ -151,9 +153,15 @@ export default {
         showModal() {
             this.isModalVisible = true;
         },
+        // showEditModal() {
+        //     this.isEditModalVisible = true;
+        // },
         closeModal() {
-            this.isModalVisible = false
+            this.isModalVisible = false;
         },
+        // closeEditModal(){
+        //     this.isEditModalVisible = false;
+        // }
         
     },
 }

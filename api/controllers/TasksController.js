@@ -45,7 +45,7 @@ module.exports.addTask = [
             if(err) {
                 return res.status(422).json({message: err});
             }
-            return res.status(201).json({message: "Task saved successfully!"});
+            return res.status(201).json({message: "Task saved successfully!", newTask: task});
         })
     }
 ];
@@ -96,7 +96,7 @@ module.exports.removeTask = function(req, res) {
                 if(error) {
                     return res.status(405).json({message: error});
                 }
-                return res.status(200).json({message: "Task deleted!"})
+                return res.status(200).json({message: "Task deleted!", taskId: id})
             })
         }
         else {
@@ -164,7 +164,7 @@ module.exports.updateTasks = [
                     if(error) {
                         return res.status(422).json({message: error});
                     }
-                    return res.status(201).json({message: "Task updated successfully"});
+                    return res.status(201).json({message: "Task updated successfully", data: task});
                 } )
             }
             else {

@@ -23,7 +23,7 @@
                 >
                 <!-- transform transition-all
                         overflow-hidden shadow-xl rounded -->
-                    <form class="overflow-auto scroll" @submit.prevent="addTask">
+                    <form class="overflow-auto scroll" @submit.prevent="pushData">
                         <div 
                             class="
                                 bg-white rounded pt-4 pb-4 px-4 
@@ -34,7 +34,7 @@
                             <!-- <div> -->
                             <!-- <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12"></div> -->
                                 <div class="mt-3 p-4">
-                                    <h1 class="text-center">Create Task</h1>
+                                    <h1 class="text-center">Modify Task</h1>
                                     <div class="mt-2 text-black-500">
                                             <label for="title" class="block">
                                                 <span class="text-black">Label</span>
@@ -44,7 +44,7 @@
                                                         px-4 py-2
                                                         border-0 focus:outline-0
                                                     "
-                                                    v-model="form.label"
+                                                    v-model="formed.label"
                                                 >
                                                     <option value="" selected disabled>Label</option>
                                                     <option>Work</option>
@@ -63,7 +63,7 @@
                                                         border-0 border-b-2 border-black
                                                         focus:outline-none
                                                     "
-                                                    v-model="form.title"
+                                                    v-model="formed.title"
                                                 >
                                             </label>
                                             <label for="notes" class="block">
@@ -78,7 +78,7 @@
                                                         border-0 border-b-2 border-black
                                                         focus:outline-none
                                                     "
-                                                    v-model="form.notes"
+                                                    v-model="formed.notes"
                                                 >
                                             </label>
                                             <label for="title" class="block">
@@ -93,7 +93,7 @@
                                                         border-0 border-b-2 border-black
                                                         focus:outline-none
                                                     "
-                                                    v-model="form.scheduledon"
+                                                    v-model="formed.scheduledon"
                                                     min="date-time-local"
                                                     id="scheduledon"
                                                 >
@@ -104,10 +104,10 @@
                                                     class="
                                                         mt-2 mb-2 w-1/4
                                                         px-4 py-2
-                                      showModal                  border-0 focus:outline-0
+                                                        border-0 focus:outline-0
                                                         w-full
                                                     "
-                                                    v-model="form.repeats"
+                                                    v-model="formed.repeats"
                                                     required
                                                 >
                                                     <option value="" selected disabled>Repeat Task?</option>
@@ -123,8 +123,8 @@
                                                         px-4 py-2
                                                         border-0 focus:outline-0
                                                     "
-                                                    v-model="form.isreminder"
-                                                    v-if="form.repeats == 1"
+                                                    v-model="formed.isreminder"
+                                                    v-if="formed.repeats == 1"
                                                 >
                                                     <option value="" selected disabled>Repeat Frequency</option>
                                                     <option value="1">Daily</option>
@@ -152,91 +152,31 @@
         </div>
     </div>
 </template>
-
 <script>
 export default {
-    props: ['user'],
-    data() {
+    props: ['user', 'task'],
+    data() 
+    {
         return {
-            form: {
+            formed: {
                 label: '',
-                title: null,
-                notes: null,
-                scheduledon: null,
+                title: '',
+                notes: '',
+                scheduledon: '',
                 repeats: '',
                 isreminder: '',
-                assignto: this.user.username,
-                company_id: this.user.company_id,
-            },
-            loading: false,
+            }
         }
-    },
-    watch: {
-
-    },
-    computed:{
-        
     },
     methods: {
-
-        close() {
-            this.$emit("close");
-        },
-
-        async addTask() 
+        close()
         {
-            await this.$store.dispatch("tasks/addTask", this.form)
-            .then((response) => {
-                this.$toast.success(`Task saved successfully!`, {
-                    // icon: 'check',
-                    action: {
-                        text: 'X',
-                        onClick: (e, toastObj) => {
-                            toastObj.goAway(0);
-                        },
-                    },
-                    position: 'top-center',
-                    duration: 5000,
-                    singleton: true,                
-                })
-            })
-            .catch((err) => {
-                this.$toast.error(`Failed to save!`, {
-                    // icon: 'cancel',
-                    action: {
-                        text: 'X',
-                        onClick: (e, toastObj) => {
-                            toastObj.goAway(0);
-                        },
-                    },
-                    position: 'top-center',
-                    duration: 5000,
-                    singleton: true,
-                })
-            })
-            .finally(() => {
-                this.loading = false
-                this.form = {
-                    label: '',
-                    title: null,
-                    notes: null,
-                    scheduledon: null,
-                    repeats: '',
-                    isreminder: '',
-                };
-            })
+            this.$emit('close');
+        },
+        pushData() {
+            // this.$emit('newData', this.form);
+            console.log("An action!")
         }
-    },
-
-    mounted() 
-    {
-        // console.log(new Date().toISOString().split('T')[0])
-    },
-
-
-    updated() 
-    {
-        
     }
-};
+}
 </script>
