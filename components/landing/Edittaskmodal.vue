@@ -44,7 +44,7 @@
                                                         px-4 py-2
                                                         border-0 focus:outline-0
                                                     "
-                                                    v-model="formed.label"
+                                                    v-model="form.label"
                                                 >
                                                     <option value="" selected disabled>Label</option>
                                                     <option>Work</option>
@@ -63,7 +63,7 @@
                                                         border-0 border-b-2 border-black
                                                         focus:outline-none
                                                     "
-                                                    v-model="formed.title"
+                                                    v-model="form.title"
                                                 >
                                             </label>
                                             <label for="notes" class="block">
@@ -78,7 +78,7 @@
                                                         border-0 border-b-2 border-black
                                                         focus:outline-none
                                                     "
-                                                    v-model="formed.notes"
+                                                    v-model="form.notes"
                                                 >
                                             </label>
                                             <label for="title" class="block">
@@ -93,7 +93,7 @@
                                                         border-0 border-b-2 border-black
                                                         focus:outline-none
                                                     "
-                                                    v-model="formed.scheduledon"
+                                                    v-model="form.scheduledon"
                                                     min="date-time-local"
                                                     id="scheduledon"
                                                 >
@@ -107,7 +107,7 @@
                                                         border-0 focus:outline-0
                                                         w-full
                                                     "
-                                                    v-model="formed.repeats"
+                                                    v-model="form.repeats"
                                                     required
                                                 >
                                                     <option value="" selected disabled>Repeat Task?</option>
@@ -123,8 +123,8 @@
                                                         px-4 py-2
                                                         border-0 focus:outline-0
                                                     "
-                                                    v-model="formed.isreminder"
-                                                    v-if="formed.repeats == 1"
+                                                    v-model="form.isreminder"
+                                                    v-if="form.repeats == 1"
                                                 >
                                                     <option value="" selected disabled>Repeat Frequency</option>
                                                     <option value="1">Daily</option>
@@ -158,7 +158,7 @@ export default {
     data() 
     {
         return {
-            formed: {
+            form: {
                 label: '',
                 title: '',
                 notes: '',
@@ -177,6 +177,17 @@ export default {
             // this.$emit('newData', this.form);
             console.log("An action!")
         }
+    },
+
+    beforeMount() {
+        this.form.label = this.task.label;
+        this.form.title = this.task.title;
+        this.form.notes = this.task.notes;
+        // this.task.scheduledon = new Date(this.task.scheduled_on);
+        this.form.repeats = this.task.repeats == 1 ? 'Yes' : 'No';
+        this.task.isreminder = this.task.isreminder;
+
+
     }
 }
 </script>

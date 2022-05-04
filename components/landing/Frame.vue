@@ -5,7 +5,7 @@
         <div v-if="tasks.length > 0" class="md:grid md:grid-cols-6 sm:flex sm:flex-col bg-white p-4 rounded-lg">
             
             <!-- task container -->
-            <div @dblclick="modifyTask(task.id)" class="md:col-span-2 border-2 border-gray-100 p-4 m-4 shadow-xl shadow-orange-800 rounded" v-for="task in tasks" :key="task.id">
+            <div @dblclick="modifyTask(task)" class="md:col-span-2 border-2 border-gray-100 p-4 m-4 shadow-xl shadow-orange-800 rounded cursor-pointer" v-for="task in tasks" :key="task.id">
                
                 <!-- task label -->
                 <div class="flex flex-row place-content-between cursor-pointer">
@@ -79,7 +79,7 @@
                                         hover:bg-gray-100
                                     "
                                     href="#"
-                                    @click.prevent="modifyTask(task)"
+                                    @click.prevent="modifyTask(tasks)"
                                 >
                                     Edit
                                 </a>
@@ -154,6 +154,7 @@
         <landing-edittaskmodal
             v-show="isEditModalVisible"
             @close="closeEditModal"
+            :task="selectedTask"
         />
         <!-- END Modal -->
 
@@ -168,7 +169,7 @@ export default {
         return {
             dated: new Date().toDateString(),
             isEditModalVisible: false,
-            selectedTask: null,
+            selectedTask: {},
         }
     },
     watch: {
@@ -210,7 +211,7 @@ export default {
         modifyTask()
         {
             this.isEditModalVisible = true;
-            this.selectedTask = arguments[0]
+            this.selectedTask = arguments[0];
         },
 
         closeEditModal() 
