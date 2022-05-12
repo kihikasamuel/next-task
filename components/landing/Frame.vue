@@ -196,12 +196,11 @@ export default {
         {
             const target_id = e.target.parentNode.id;
             const el = document.querySelector(`[aria-labelledby="${target_id}"]`);
-            // console.log(el.tagName);
             try {
-                if(el.classList !== null)
-                {
-                    el.classList.toggle('hidden');
-                }
+                el.classList.remove('hidden');
+                setInterval(() => {
+                    el.classList.add('hidden')
+                }, 1000)
             } catch (error) {
                 console.log(error);
             }

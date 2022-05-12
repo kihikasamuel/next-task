@@ -153,16 +153,9 @@ export default {
         showModal() {
             this.isModalVisible = true;
         },
-        // showEditModal() {
-        //     this.isEditModalVisible = true;
-        // },
         closeModal() {
             this.isModalVisible = false;
         },
-        // closeEditModal(){
-        //     this.isEditModalVisible = false;
-        // }
-        
     },
 }
 </script>

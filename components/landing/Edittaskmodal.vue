@@ -178,16 +178,14 @@ export default {
             console.log("An action!")
         }
     },
-
-    beforeMount() {
+    beforeMount() 
+    {
         this.form.label = this.task.label;
         this.form.title = this.task.title;
         this.form.notes = this.task.notes;
         // this.task.scheduledon = new Date(this.task.scheduled_on);
         this.form.repeats = this.task.repeats == 1 ? 'Yes' : 'No';
         this.task.isreminder = this.task.isreminder;
-
-
     }
 }
 </script>

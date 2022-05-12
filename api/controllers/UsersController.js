@@ -128,7 +128,6 @@ module.exports.user = (req, res, next) => {
             }
             else {
                 return res.status(200).json({user: decoded});
-                // return next();
             }
         })
     }
