@@ -1,11 +1,11 @@
 <template>
-    <div class="p-5 mt-4 font-sans bg-white main-col">
+    <div class="p-5 mt-4 font-sans main-col">
         
         <!-- begin task list -->
-        <div v-if="tasks.length > 0" class="md:grid md:grid-cols-6 sm:flex sm:flex-col bg-white p-4 rounded-lg">
+        <div v-if="tasks.length > 0" class="md:grid md:grid-cols-12 sm:flex sm:flex-col p-4 rounded-lg">
             
             <!-- task container -->
-            <div @dblclick="modifyTask(task)" class="md:col-span-2 border-2 border-gray-100 p-4 m-4 shadow-xl shadow-orange-800 rounded cursor-pointer" v-for="task in tasks" :key="task.id">
+            <div @dblclick="modifyTask(task)" class="md:col-span-3 bg-white border-2 border-gray-100 p-4 m-4 shadow-xl shadow-gray-800 rounded cursor-pointer" v-for="task in tasks" :key="task.id">
                
                 <!-- task label -->
                 <div class="flex flex-row place-content-between cursor-pointer">
@@ -48,7 +48,6 @@
                                 min-w-max
                                 hidden
                                 absolute
-                                bg-white
                                 text-base
                                 z-50
                                 float-right
@@ -95,7 +94,6 @@
                                         block
                                         w-full
                                         whitespace-nowrap
-                                        
                                         text-gray-700
                                         hover:bg-gray-100
                                     "
@@ -139,7 +137,7 @@
         <!-- end task container -->
 
         <!-- while no task -->
-        <div v-else class="md:col-span-6 bg-white p-4 rounded-lg m-4 text-center">
+        <div v-else class="md:col-span-6 p-4 rounded-lg m-4 text-center">
             <!-- task label -->
             <p v-if="!loading" class="font-narrow font-bold text-lg">
                 You have no NexTask to view! Go ahead and schedule one.

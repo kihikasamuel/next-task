@@ -28,10 +28,7 @@ body {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(to right top, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8);
     scroll-behavior: smooth;
-    /* background-color: rgb(86, 215, 247); */
-    /* height: 100%; */
 }
 
 /* main container for pages */
@@ -45,4 +42,12 @@ body {
 /* forms */
 .user-name {
     text-transform: capitalize;
+}
+
+.sidebar {
+    background-image: linear-gradient(to right top, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8);
+}
+
+.dashboard-main-section {
+    background-image: linear-gradient(to right top, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda);
 }

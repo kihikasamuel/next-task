@@ -94,3 +94,6 @@ sw.*
 # 
 1.txt
 tested.js
+
+#
+node_modules

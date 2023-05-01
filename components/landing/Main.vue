@@ -1,11 +1,11 @@
 <template>
   <section
-    class="md:col-span-5 cont rounded scroll-none border-2 border-gray-200 bg-white"
+    class="md:col-span-5 rounded scroll-none border-2 border-gray-200"
   >
-    <div class="sticky top-0 brightness-0">
+    <div class="sticky top-0">
 
         <!-- BEGIN row 1 -->
-        <div class="grid md:grid-cols-6 px-4 pt-4 bg-white">
+        <div class="grid md:grid-cols-6 px-4 pt-4 sidebar">
 
             <!-- search begin-->
             <div class="md:col-span-4">
@@ -45,7 +45,7 @@
         <!-- END of row 1 -->
 
         <!-- BEGIN row 2 -->
-        <div class="grid md:grid-cols-6 pt-8 bg-white">
+        <div class="grid md:grid-cols-6 pt-8 sidebar">
 
             <!-- text goes here -->
             <div class="md:col-span-4 font-sans px-4">
@@ -74,7 +74,7 @@
         <!-- END row 2 -->
 
         <!-- BEGIN row 3 -->
-        <div class="grid md:grid-cols-6 pt-6 pb-3 bg-white">
+        <div class="grid md:grid-cols-6 pt-6 pb-3 sidebar">
 
             <div class="md:col-span-4">
                 <Nav class="md:px-4">
@@ -102,11 +102,11 @@
 
             <div class="md:col-span-2 text-white">
                 <div class="flex md:flex-row md:w-3/4 justify-end content-center">
-                    <button type="button" class="text-black px-3 py-1 border-2 border-black-200 rounded-md bg-gray-100 mr-2">
+                    <button type="button" class="text-black px-3 py-1 border-2 border-gray-200 bg-gray-100 hover:bg-gray-100 hover:text-blue-500 rounded-md mr-2">
                         <font-awesome-icon :icon="['fas', 'share-alt']" />
                         Share
                     </button>
-                    <button type="button" class="px-3 py-1 rounded bg-blue-700" @click="showModal">
+                    <button type="button" class="text-black px-3 py-1 rounded border-2 border-gray-200 bg-gray-100 hover:bg-gray-100 hover:text-blue-500" @click="showModal">
                         <font-awesome-icon :icon="['fas', 'plus']" />
                         Add New
                     </button>
@@ -114,10 +114,8 @@
             </div>
         </div>
         <!-- END row 3 -->
-        <landing-frame
-            :loading="loading"
-        />
     </div>
+    <landing-frame :loading="loading"/>
     <!-- BEGIN fetched content based on links -->
     
     <!-- END fetched content based on links -->

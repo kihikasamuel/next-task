@@ -54,7 +54,6 @@
                     min-w-max
                     absolute
                     hidden
-                    bg-white
                     text-base
                     z-50
                     float-left

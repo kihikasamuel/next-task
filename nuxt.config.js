@@ -1,14 +1,14 @@
 export default {
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'simple-todos',
+        title: 'NextTask',
         htmlAttrs: {
             lang: 'en'
         },
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: 'A simple Todo App built with Nuxt and Express' },
+            { hid: 'description', name: 'description', content: 'Schedule your Next Task. We take care of the reminders so you can worry about what matters. Built with Nuxt and Express' },
             { name: 'format-detection', content: 'telephone=no' }
         ],
         link: [

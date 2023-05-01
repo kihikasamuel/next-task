@@ -1,5 +1,5 @@
 <template>
-    <section class="md:col-span-1 bg-white-500 z-20 mt-0 p-4 rounded">
+    <section class="md:col-span-1 border-r-2 border-white z-20 mt-0 p-4 rounded">
         <div class="mb-7 p-4 sticky top-0">
             <Nuxt-Link to="/">
                 <font-awesome-icon :icon="['fas', 'check-circle']" />

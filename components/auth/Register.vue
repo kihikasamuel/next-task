@@ -109,8 +109,8 @@
                             {{passwordErr}}
                         </span>
                     </label>
-                    <label for="checkbox">
-                        <input
+                    <!-- <label for="checkbox"> -->
+                        <!-- <input
                         type="checkbox"
                         v-model="register.signed_terms"
                         name="terms"
@@ -123,11 +123,11 @@
                             <a class="text-green-500" href="/terms-of-service"
                                 >the terms of service</a
                             >
-                        </span>
-                        <span class="text-red-500 text-xs" v-if="errors && errors.signed_terms">
+                        </span> -->
+                        <!-- <span class="text-red-500 text-xs" v-if="errors && errors.signed_terms">
                             {{errors.signed_terms.msg}}
-                        </span>
-                    </label>
+                        </span> -->
+                    <!-- </label> -->
                     <button
                         type="submit"
                         class="
@@ -169,7 +169,7 @@ export default {
                 fullname: "",
                 username: "",
                 password: "",
-                signed_terms: "",
+                // signed_terms: "",
             },
             confirm_password: "",
             isError: false,
@@ -201,7 +201,7 @@ export default {
                         full_name: this.register.fullname,
                         username: this.register.username,
                         password: this.register.password,
-                        signed_terms: this.register.signed_terms
+                        // signed_terms: this.register.signed_terms
                     })
                     .then((user)=>{
                         this.$toast.success(user.message,{

@@ -4,7 +4,7 @@
         class="grid md:grid-cols-6 p-0 rounded w-full" 
         v-if="isAuthenticated"
     >        
-        <landing-sidebar/>
+        <landing-sidebar class="sidebar"/>
         <landing-main :loggedinuser="loggedInUser" />
 
     </div>

@@ -35,6 +35,7 @@
                             <!-- <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12"></div> -->
                                 <div class="mt-3 p-4">
                                     <h1 class="text-center">Create Task</h1>
+                                    
                                     <div class="mt-2 text-black-500">
                                             <label for="title" class="block">
                                                 <span class="text-black">Label</span>
@@ -44,7 +45,7 @@
                                                         px-4 py-2
                                                         border-0 focus:outline-0
                                                     "
-                                                    v-model="form.label"
+                                                    v-model="label"
                                                 >
                                                     <option value="" selected disabled>Label</option>
                                                     <option>Work</option>
@@ -63,7 +64,7 @@
                                                         border-0 border-b-2 border-black
                                                         focus:outline-none
                                                     "
-                                                    v-model="form.title"
+                                                    v-model="title"
                                                 >
                                             </label>
                                             <label for="notes" class="block">
@@ -78,7 +79,7 @@
                                                         border-0 border-b-2 border-black
                                                         focus:outline-none
                                                     "
-                                                    v-model="form.notes"
+                                                    v-model="notes"
                                                 >
                                             </label>
                                             <label for="title" class="block">
@@ -93,7 +94,7 @@
                                                         border-0 border-b-2 border-black
                                                         focus:outline-none
                                                     "
-                                                    v-model="form.scheduledon"
+                                                    v-model="scheduledon"
                                                     min="date-time-local"
                                                     id="scheduledon"
                                                 >
@@ -104,10 +105,11 @@
                                                     class="
                                                         mt-2 mb-2 w-1/4
                                                         px-4 py-2
-                                      showModal                  border-0 focus:outline-0
+                                                        showModal
+                                                        border-0 focus:outline-0
                                                         w-full
                                                     "
-                                                    v-model="form.repeats"
+                                                    v-model="repeats"
                                                     required
                                                 >
                                                     <option value="" selected disabled>Repeat Task?</option>
@@ -123,8 +125,8 @@
                                                         px-4 py-2
                                                         border-0 focus:outline-0
                                                     "
-                                                    v-model="form.isreminder"
-                                                    v-if="form.repeats == 1"
+                                                    v-model="isreminder"
+                                                    v-if="repeats !== '0'"
                                                 >
                                                     <option value="" selected disabled>Repeat Frequency</option>
                                                     <option value="1">Daily</option>
@@ -158,16 +160,12 @@ export default {
     props: ['user'],
     data() {
         return {
-            form: {
-                label: '',
-                title: null,
-                notes: null,
-                scheduledon: null,
-                repeats: '',
-                isreminder: '',
-                assignto: this.user.username,
-                company_id: this.user.company_id,
-            },
+            label: '',
+            title: null,
+            notes: null,
+            scheduledon: null,
+            repeats: "",
+            isreminder: "",
             loading: false,
         }
     },
@@ -185,7 +183,17 @@ export default {
 
         async addTask() 
         {
-            await this.$store.dispatch("tasks/addTask", this.form)
+            let form_data = {
+                label: this.label,
+                title: this.title,
+                notes: this.notes,
+                scheduledon: this.scheduledon,
+                repeats: this.repeats,
+                isreminder: this.isreminder,
+                assignto: this.user.username,
+                company_id: this.user.companyid,
+            }
+            await this.$store.dispatch("tasks/addTask", form_data)
             .then((response) => {
                 this.$toast.success(`Task saved successfully!`, {
                     // icon: 'check',
@@ -199,6 +207,16 @@ export default {
                     duration: 5000,
                     singleton: true,                
                 })
+                this.$emit("close");
+                this.form = {
+                    label: '',
+                    title: null,
+                    notes: null,
+                    scheduledon: null,
+                    repeats: '',
+                    isreminder: '',
+                };
+
             })
             .catch((err) => {
                 this.$toast.error(`Failed to save!`, {
@@ -216,14 +234,6 @@ export default {
             })
             .finally(() => {
                 this.loading = false
-                this.form = {
-                    label: '',
-                    title: null,
-                    notes: null,
-                    scheduledon: null,
-                    repeats: '',
-                    isreminder: '',
-                };
             })
         }
     },
@@ -231,6 +241,7 @@ export default {
     mounted() 
     {
         // console.log(new Date().toISOString().split('T')[0])
+        console.log(this.user)
     },
 
 

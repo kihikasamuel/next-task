@@ -30,7 +30,7 @@ module.exports.register = [
     'Password must be 6 characters or longer and must contain atleast 1 uppercase letter, a number and a special character')
     .isLength({min: 6}).isStrongPassword(),
 
-    validator.body('signed_terms', 'Please accept our terms and conditions to continue').notEmpty(),
+    // validator.body('signed_terms', 'Please accept our terms and conditions to continue').notEmpty(),
 
     function(req, res) {
 
@@ -45,7 +45,7 @@ module.exports.register = [
         user.username = req.body.username;
         user.fullname = req.body.full_name;
         user.password = req.body.password;
-        user.tc_accepted = req.body.signed_terms;
+        // user.tc_accepted = req.body.signed_terms;
 
         // generate a unique alphanum ID
         let u_id = Math.random().toString(36).slice(2);
@@ -60,9 +60,9 @@ module.exports.register = [
         //save records to db
         conn.query('INSERT INTO users_tbl SET ?', user, (err, results, fields) => {
             if(err) {
-                return res.status(422).json({message: 'Unable to register user!'});
+                return res.status(422).json({message: 'Error while registering user. Please try again!'});
             }
-            return res.status(200).json({message: 'Registered successfully! Proceed to login'})
+            return res.status(200).json({message: 'Registered successfully. Proceed to login.'})
         });
     }
 ];
