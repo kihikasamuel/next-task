@@ -6,12 +6,12 @@
                     <h1 
                         class="
                             font-narrow font-black non-italic ordinal
-                            text-3xl
+                            text-3xl mb-4
                         "
                     >
                         The easiest way to schedule your tasks.
                     </h1>
-                    <button 
+                    <!-- <button 
                         class="
                             text-white font-bold
                             mt-5 bg-pink-500 
@@ -19,13 +19,28 @@
                             shadow-xl shadow-gray-600 
                             hover:bg-pink-800 hover:shadow-2xl
                         "
-                        @click="goTo"
+                        @click="goTo()"
                     >
                     Get Started
                     <font-awesome-icon :icon="['fas', 'angle-right']"/>
-                    </button>
+                    </button> -->
                     <span class="text-gray-500">Free for life.</span>
                     <span class="text-gray-500">No credit card.</span>
+                </div>
+                <div class="p-10 md:mt-5 md:ml-20">
+                    <nuxt-link 
+                        to="/auth/register"
+                        class="
+                            text-white font-bold
+                            mt-5 bg-pink-500 
+                            px-5 py-3 rounded
+                            shadow-xl shadow-gray-600 
+                            hover:bg-pink-800 hover:shadow-2xl
+                        "
+                    >
+                    Get Started
+                    <font-awesome-icon :icon="['fas', 'angle-right']"/>
+                    </nuxt-link>
                 </div>
             </div>
         </div>
@@ -57,10 +72,7 @@ export default {
         }
     },
     methods: {
-        goTo() 
-        {
-            this.$router.push('/auth/register')
-        }
+        
     }
 }
 </script>
