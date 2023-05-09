@@ -1,0 +1,53 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* import fonts */
+@font-face {
+    font-family: "PT Sans Narrow";
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+        url('fonts/pt-sans-narrow-v16-latin/pt-sans-narrow-v16-latin-regular.woff'),
+        url('fonts/pt-sans-narrow-v16-latin/pt-sans-narrow-v16-latin-regular.woff2');
+}
+
+@font-face {
+    font-family: "PT Sans Narrow";
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+        url('fonts/pt-sans-narrow-v16-latin/pt-sans-narrow-v16-latin-700.woff'),
+        url('fonts/pt-sans-narrow-v16-latin/pt-sans-narrow-v16-latin-700.woff2');
+}
+
+/* unset all properties */
+body {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+/* main container for pages */
+.main 
+{
+    background-image: linear-gradient(to right top, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8);
+    min-height: 100vh;
+    margin-top: 30px;
+}
+
+/* forms */
+.user-name {
+    text-transform: capitalize;
+}
+
+.sidebar {
+    background-image: linear-gradient(to right top, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8, #d0e8f8);
+}
+
+.dashboard-main-section {
+    background-image: linear-gradient(to right top, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda, #b5cbda);
+}
